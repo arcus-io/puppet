@@ -1,7 +1,7 @@
 name    'arcus-memcached'
 version '0.0.1'
 source 'UNKNOWN'
-author 'Amara <dev@pculture.org>'
+author 'Arcus <support@arcus.io>'
 license 'Apache License, Version 2.0'
 summary 'UNKNOWN'
 description 'UNKNOWN'

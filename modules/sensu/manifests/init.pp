@@ -14,11 +14,11 @@
 #
 # === Authors
 #
-# Amara <dev@pculture.org>
+# Arcus <support@arcus.io>
 #
 # === Copyright
 #
-# Copyright 2012 PCF, unless otherwise noted.
+# Copyright 2012 Arcus, unless otherwise noted.
 #
 class sensu (
   $sensu_rabbitmq_host=$sensu::params::sensu_rabbitmq_host,
