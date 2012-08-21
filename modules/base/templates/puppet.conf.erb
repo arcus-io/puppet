@@ -7,6 +7,8 @@
   node_name = facter
   reporturl = <%= scope.lookupvar('base::puppet_dashboard_url') %>/reports/upload
   facts_terminus = yaml
+  node_terminus = exec
+  external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=<%= scope.lookupvar('base::puppet_dashboard_url') %> /usr/share/puppet-dashboard/bin/external_node
   modulepath = /opt/arcus/modules:/etc/puppet/modules
 
 [agent]
