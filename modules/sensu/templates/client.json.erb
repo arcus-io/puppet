@@ -1,0 +1,10 @@
+{
+  "client": {
+    "name": "<%= @hostname %>",
+    "address": "<%= @fqdn %>",
+     "subscriptions": [
+        <% @subscriptions.each do |sub| %>"<%= sub %>",<% end %>
+        "core"
+      ]
+  }
+}

@@ -3,6 +3,9 @@ class sensu::config inherits sensu::params {
     path      => "${::path}",
     logoutput => on_failure,
   }
+  $hostname = $::hostname
+  $fqdn = $::fqdna
+  $subscriptions = []
   $sensu_rabbitmq_host = $sensu::sensu_rabbitmq_host
   $sensu_rabbitmq_port = $sensu::sensu_rabbitmq_port
   $sensu_rabbitmq_vhost = $sensu::sensu_rabbitmq_vhost
@@ -19,6 +22,14 @@ class sensu::config inherits sensu::params {
   file { '/etc/sensu/config.json':
     ensure  => present,
     content => template('sensu/config.json.erb'),
+    owner   => root,
+    group   => 'sensu',
+    mode    => 0640,
+    require => Package['sensu'],
+  }
+  file { '/etc/sensu/conf.d/client.json':
+    ensure  => present,
+    content => template('sensu/client.json.erb'),
     owner   => root,
     group   => 'sensu',
     mode    => 0640,
