@@ -4,7 +4,7 @@ class sensu::config inherits sensu::params {
     logoutput => on_failure,
   }
   $hostname = $::hostname
-  $fqdn = $::fqdna
+  $fqdn = $::fqdn
   $subscriptions = []
   $sensu_rabbitmq_host = $sensu::sensu_rabbitmq_host
   $sensu_rabbitmq_port = $sensu::sensu_rabbitmq_port
