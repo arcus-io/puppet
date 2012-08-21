@@ -1,8 +1,8 @@
 ---
 :hierarchy:
     - ${operatingsystem}
+    - ${arcus_organization}
     - common
-    - ${organization}
 :backends:
     - yaml
 :yaml:

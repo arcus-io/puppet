@@ -8,4 +8,5 @@ To setup a Puppet master:
   * Symlink `/opt/arcus/manifests` to `/etc/puppet/manifests`
   * Copy the `/opt/arcus/puppet.conf` to `/etc/puppet/puppet.conf`
   * Clone the Hiera repo (http://github.com/puppetlabs/hiera-puppet.git) to `/etc/puppet/modules/hiera-puppet`
+  * Symlink `/opt/arcus/hiera.yaml` to `/etc/hiera.yml` (for the Hiera CLI) and `/etc/puppet/hiera.yaml` (for Puppet)
   * TODO: Clone the Hiera private configs to `/etc/puppet/hiera/`
