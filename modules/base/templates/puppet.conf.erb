@@ -5,7 +5,6 @@
 [master]
   allow_duplicate_certs = True
   node_name = facter
-  ssldir = /var/lib/puppet/ssl
   reporturl = <%= scope.lookupvar('base::puppet_dashboard_url') %>/reports/upload
   facts_terminus = yaml
   modulepath = /opt/arcus/modules:/etc/puppet/modules
