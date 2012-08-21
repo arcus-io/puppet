@@ -1,0 +1,9 @@
+---
+:hierarchy:
+    - ${operatingsystem}
+    - common
+    - ${organization}
+:backends:
+    - yaml
+:yaml:
+    :datadir: '/etc/puppet/hiera'
