@@ -2,7 +2,7 @@
 :hierarchy:
     - ${operatingsystem}
     - common
-    - organization
+    - ${organization}
 :backends:
     - yaml
 :yaml:
