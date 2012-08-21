@@ -10,7 +10,6 @@ Facter.add("arcus_organization") do
     rescue
       puts 'Unable to read /etc/arcus.yaml'
     end
-    puts organization
     organization
   end
 end
