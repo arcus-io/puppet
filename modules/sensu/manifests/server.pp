@@ -35,7 +35,8 @@ class sensu::server ($configure_rabbitmq=true, $configure_redis=true) {
       command   => "rabbitmqctl add_user $sensu_rabbitmq_user $sensu_rabbitmq_pass",
       unless    => "rabbitmqctl list_users | grep $sensu_rabbitmq_user",
       user      => root,
-      notify      => [ Service['sensu-api'], Service['sensu-server'], Service['sensu-dashboard'] ],
+      require   => Package['rabbitmq-server'],
+      notify    => [ Service['sensu-api'], Service['sensu-server'], Service['sensu-dashboard'] ],
     }
     exec { 'sensu::server::rabbitmq_vhost_permissions':
       command     => "rabbitmqctl set_permissions -p $sensu_rabbitmq_vhost $sensu_rabbitmq_user \".*\" \".*\" \".*\"",
