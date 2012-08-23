@@ -1,0 +1,27 @@
+# Class: arcus
+#
+# This is the core system module
+#
+# Parameters:
+#   n/a
+# Actions:
+#   Installs and configures the core system
+# Requires:
+#   n/a
+#
+# Sample usage:
+#
+#  include arcus
+#
+class arcus (
+    $puppet_dashboard_url=$arcus::params::puppet_dashboard_url,
+    $syslog_server=$arcus::params::syslog_server,
+  ) inherits arcus::params {
+  class { 'arcus::config': }
+  class { 'arcus::package':
+    require => Class['arcus::config'],
+  }
+  class { 'arcus::service':
+    require => [ Class['arcus::config'], Class['arcus::package'] ],
+  }
+}

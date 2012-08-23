@@ -1,4 +1,4 @@
-# Puppet Module :: Base
+# Puppet Module :: Arcus
 
 This installs and configures the core system.
 
@@ -6,4 +6,4 @@ This installs and configures the core system.
 
 Basic
 
-`include base`
+`class { 'arcus': }`

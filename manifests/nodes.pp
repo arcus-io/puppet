@@ -1,5 +1,5 @@
 node basenode {
-  include base
+  include arcus
 }
 node default inherits basenode {} # default for all non-defined nodes
 

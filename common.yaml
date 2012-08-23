@@ -1,4 +1,6 @@
 ---
+collectd_host: localhost
+collectd_port: 25826
 puppet_dashboard_url: http://puppet.local:3000
 sensu_rabbitmq_host: localhost
 sensu_rabbitmq_port: 5672
