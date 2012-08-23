@@ -1,6 +1,12 @@
 ---
 collectd_host: localhost
 collectd_port: 25826
+memcached_memory_limit: 64
+memcached_user: memcache
+memcached_listen_host: 127.0.0.1
+memcached_port: 11211
+memcached_connection_limit: 1024
+memcached_log: /var/log/memcached.log
 puppet_dashboard_url: http://puppet.local:3000
 sensu_rabbitmq_host: localhost
 sensu_rabbitmq_port: 5672
