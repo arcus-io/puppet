@@ -1,21 +1,21 @@
-# Redis configuration file example
-
+# Redis configuration file
 daemonize no
 pidfile /var/run/redis.pid
-port 6379
-timeout 0
+bind <%= @listen_host %>
+port <%= @port %>
+timeout <%= @timeout %>
 # verbose for more ; debug for all
-loglevel notice
-logfile /var/log/redis/redis-server.log
-databases 16
+loglevel <%= @log_level %>
+logfile <%= @log_dir %>/redis.log
+databases <%= @databases %>
 save 900 1
 save 300 10
 save 60 10000
 rdbcompression yes
 dbfilename dump.rdb
-dir <%= scope.lookupvar('redis::data_dir') %>
+dir <%= @data_dir %>
 slave-serve-stale-data yes
-# requirepass foobared
+<% if @password != 'nil' %>requirepass <%= @password %><% end %>
 appendonly no
 slowlog-log-slower-than 10000
 slowlog-max-len 128

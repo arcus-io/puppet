@@ -3,29 +3,31 @@ class redis::config inherits redis::params {
     path      => "${::path}",
     logoutput => on_failure,
   }
+  $user = $redis::user
+  $log_dir = $redis::log_dir
   user { 'redis::config::redis_user':
-    name    => "${redis::redis_user}",
+    name    => "${redis::user}",
     comment => "Redis",
-    home    => "/home/${redis::redis_user}",
+    home    => "/home/${redis::user}",
     ensure  => present,
   }
   file { 'redis::config::log_dir':
     ensure  => directory,
     path    => "${redis::log_dir}",
     mode    => 0750,
-    owner   => "${redis::redis_user}",
+    owner   => "${redis::user}",
   }
   file { 'redis::config::data_dir':
     ensure  => directory,
     path    => "${redis::data_dir}",
-    owner   => "${redis::redis_user}",
+    owner   => "${redis::user}",
     mode    => 0750,
     require => User["redis::config::redis_user"],
   }
   file { 'redis::config::redis_conf':
     path    => '/etc/redis.conf',
     content => template('redis/redis.conf.erb'),
-    owner   => "${redis::redis_user}",
+    owner   => "${redis::user}",
     mode    => 0644,
     notify  => Service['redis'],
   }

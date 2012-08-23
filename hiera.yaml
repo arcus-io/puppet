@@ -1,7 +1,8 @@
 ---
 :hierarchy:
-    - '%{arcus_organization}'
-    - '%{operatingsystem}'
+    - %{arcus_organization}/%{hostname}
+    - %{arcus_organization}/%{operatingsystem}
+    - %{arcus_organization}/default
     - common
 :backends:
     - yaml

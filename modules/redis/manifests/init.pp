@@ -21,7 +21,13 @@
 # Copyright 2012 Arcus, unless otherwise noted.
 #
 class redis (
-    $redis_user=$redis::params::redis_user,
+    $listen_host=$redis::params::listen_host,
+    $port=$redis::params::port,
+    $timeout=$redis::params::timeout,
+    $log_level=$redis::params::log_level,
+    $databases=$redis::params::databases,
+    $user=$redis::params::user,
+    $password=$redis::params::password,
     $data_dir=$redis::params::data_dir,
     $log_dir=$redis::params::log_dir,
   ) inherits redis::params {
