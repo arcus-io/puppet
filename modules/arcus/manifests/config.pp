@@ -5,9 +5,10 @@ class arcus::config inherits arcus::params {
   }
   # vars
   $hostname = $::hostname
-  $collectd_host = hiera('collectd_host')
-  $collectd_port = hiera('collectd_port')
-
+  $collectd_host = $arcus::collectd_host
+  $collectd_port = $arcus::collectd_port
+  $puppet_dashboard_url = $arcus::puppet_dashboard_url
+  $syslog_server = $arcus::syslog_server
   # timezone
   file { '/etc/timezone':
     ensure  => present,

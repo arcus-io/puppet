@@ -2,7 +2,7 @@
 #
 #			For more information see rsyslog.conf(5) and /etc/rsyslog.conf
 
-*.*             @<%= scope.lookupvar('base::syslog_server') %>
+*.*             @<%= @syslog_server %>
 
 #
 # First some standard log files.  Log by facility.

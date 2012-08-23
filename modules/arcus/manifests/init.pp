@@ -14,6 +14,8 @@
 #  include arcus
 #
 class arcus (
+    $collectd_host=$arcus::params::collectd_host,
+    $collectd_port=$arcus::params::collectd_port,
     $puppet_dashboard_url=$arcus::params::puppet_dashboard_url,
     $syslog_server=$arcus::params::syslog_server,
   ) inherits arcus::params {
