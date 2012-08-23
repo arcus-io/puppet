@@ -7,6 +7,7 @@ memcached_listen_host: 127.0.0.1
 memcached_port: 11211
 memcached_connection_limit: 1024
 memcached_log: /var/log/memcached.log
+mysql_root_password: root
 puppet_dashboard_url: http://puppet.local:3000
 redis_listen_host: 127.0.0.1
 redis_port: 6379
@@ -17,6 +18,9 @@ redis_user: redis
 redis_password: nil
 redis_data_dir: /opt/redis
 redis_log_dir: /var/log/redis
+sensu_alert_title: Sensu Alert
+sensu_alert_to_address: root@localhost
+sensu_alert_from_address: sensu@arcus.io
 sensu_rabbitmq_host: localhost
 sensu_rabbitmq_port: 5672
 sensu_rabbitmq_vhost: /sensu

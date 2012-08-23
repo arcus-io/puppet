@@ -5,7 +5,8 @@ class sensu::config inherits sensu::params {
   }
   $hostname = $::hostname
   $fqdn = $::fqdn
-  $subscriptions = []
+  $subscriptions = split($::classes, ',')
+
   $sensu_rabbitmq_host = $sensu::sensu_rabbitmq_host
   $sensu_rabbitmq_port = $sensu::sensu_rabbitmq_port
   $sensu_rabbitmq_vhost = $sensu::sensu_rabbitmq_vhost

@@ -66,13 +66,13 @@ graphite_reconnect_delay = 5
 # sending to Graphite.
 #
 # Prefix and postfix allow to tag all values with some value.
-name_prefix = 'servers'
+name_prefix = '<% if @organization != '' %><%= @organization %>.<% end %>servers'
 name_postfix = None
 
 # The replacement character is used to munge any '.' characters
 # in name components because it is special to Graphite. Setting
 # this to None will prevent this step.
-name_replace_char = '_'
+name_replace_char = None
 
 # Optionally strip duplicates in path components. For instance
 # a.a.b.c.c.b would be rewritten as a.b.c.b

@@ -1,0 +1,211 @@
+{
+  "checks": {
+    "apache2": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p apache2 -C 1 -w 15 -c 25",
+      "interval": 60,
+      "subscribers": [ "graphite" ]
+    },
+    "beam": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p beam -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "sensu::server" ]
+    },
+    "bucky": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p bucky -C 1 -w 4 -c 5",
+      "interval": 60,
+      "subscribers": [ "graphite" ]
+    },
+    "carbon-cache": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p carbon-cache.py -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graphite" ]
+    },
+    "collectd": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p collectd -C 2 -w 3 -c 4",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "cron": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "elasticsearch": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p elasticsearch -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graylog2" ]
+    },
+    "epmd": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p epmd -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "sensu::server" ]
+    },
+    "graylog2-server": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p graylog2-server -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graylog2" ]
+    },
+    "memcached": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p memcached -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graphite" ]
+    },
+    "mongod": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p mongod -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graylog2" ]
+    },
+    "nginx": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p nginx -C 1 -w 15 -c 25",
+      "interval": 60,
+      "subscribers": [ "nginx" ]
+    },
+    "ntpd": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p ntpd -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "postfix": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p postfix -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "puppet": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p puppet -C 1 -w 3 -c 5",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "rails": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p rails -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "graylog2" ]
+    },
+    "redis-server": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p redis-server -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "redis", "sensu" ]
+    },
+    "riemann": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p riemann -C 2 -w 3 -c 3",
+      "interval": 60,
+      "subscribers": [ "riemann" ]
+    },
+    "rsyslogd": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "sensu-api": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p sensu-api -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "sensu::server" ]
+    },
+    "sensu-dashboard": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p sensu-dashboard -C 1 -w 1 -c 1",
+      "interval": 60,
+      "subscribers": [ "sensu::server" ]
+    },
+    "sshd": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p sshd -C 1 -w 10 -c 15",
+      "interval": 60,
+      "subscribers": [ "default" ]
+    },
+    "http_localhost": {
+      "handlers": [
+        "default",
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-http.rb -u http://localhost/ -s false -r",
+      "interval": 60,
+      "subscribers": [ "nginx" ]
+    }
+  }
+}

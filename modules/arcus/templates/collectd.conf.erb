@@ -64,14 +64,36 @@ LoadPlugin load
 #LoadPlugin madwifi
 #LoadPlugin mbmon
 #LoadPlugin memcachec
-#LoadPlugin memcached
+<% if @classes.include? 'memcached' %>
+LoadPlugin memcached
+<Plugin memcached>
+       Host "<%= @memcached_listen_host %>"
+       Port "<%= @memcached_port %>"
+</Plugin>
+<% end %>
 LoadPlugin memory
 #LoadPlugin multimeter
-#LoadPlugin mysql
+<% if @classes.include? 'mysql' %>
+LoadPlugin mysql
+<Plugin mysql>
+       <Database mysql>
+               Host "localhost"
+               User "root"
+               Password "<%= @mysql_root_password %>"
+               Database "mysql"
+               MasterStats true
+       </Database>
+</Plugin>
+<% end %>
 #LoadPlugin netlink
 LoadPlugin network
 #LoadPlugin nfs
-#LoadPlugin nginx
+<% if @classes.include? 'nginx' %>
+LoadPlugin nginx
+<Plugin nginx>
+       URL "http://localhost/status?auto"
+</Plugin>
+<% end %>
 #LoadPlugin notify_desktop
 #LoadPlugin notify_email
 #LoadPlugin ntpd
@@ -100,7 +122,7 @@ LoadPlugin swap
 #LoadPlugin thermal
 #LoadPlugin tokyotyrant
 #LoadPlugin unixsock
-#LoadPlugin uptime
+LoadPlugin uptime
 LoadPlugin users
 #LoadPlugin uuid
 #LoadPlugin vmem

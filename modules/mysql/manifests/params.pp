@@ -1,3 +1,3 @@
 class mysql::params {
-  $root_password = "root"
+  $root_password = hiera('mysql_root_password')
 }

@@ -4,6 +4,7 @@ class graphite::config inherits graphite::params {
     path      => "${::path}",
     logoutput => on_failure,
   }
+  $organization = $::arcus_organization
   file { '/etc/apache2/sites-available/default':
     ensure  => present,
     content => template('graphite/vhost-graphite.conf.erb'),

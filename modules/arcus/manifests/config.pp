@@ -9,6 +9,13 @@ class arcus::config inherits arcus::params {
   $collectd_port = $arcus::collectd_port
   $puppet_dashboard_url = $arcus::puppet_dashboard_url
   $syslog_server = $arcus::syslog_server
+  $classes = split($::classes, ',')
+  $memcached_listen_host = hiera('memcached_listen_host')
+  $memcached_port = hiera('memcached_port')
+  $mysql_root_password = hiera('mysql_root_password')
+  $sensu_alert_title = hiera('sensu_alert_title')
+  $sensu_alert_to_address = hiera('sensu_alert_to_address')
+  $sensu_alert_from_address = hiera('sensu_alert_from_address')
   # timezone
   file { '/etc/timezone':
     ensure  => present,
@@ -48,5 +55,42 @@ class arcus::config inherits arcus::params {
     user      => root,
     hour      => '*',
     minute    => '05',
+  }
+  # sensu
+  if ('sensu::server' in $classes) {
+    exec { 'arcus::config::restart_sensu_api':
+      command     => 'service sensu-api stop ; service sensu-api start',
+      refreshonly => true,
+    }
+    exec { 'arcus::config::restart_sensu_server':
+      command     => 'service sensu-server stop ; service sensu-server start',
+      refreshonly => true,
+    }
+    file { '/etc/sensu/handlers/mail.py':
+      ensure  => present,
+      source  => 'puppet:///modules/arcus/sensu/handlers/mail.py',
+      owner   => root,
+      group   => root,
+      mode    => 0755,
+      require => Package['sensu'],
+      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
+    }
+    file { '/etc/sensu/conf.d/handler_mail.json':
+      ensure  => present,
+      content => template('arcus/sensu/handlers/handler_mail.json.erb'),
+      owner   => root,
+      group   => root,
+      mode    => 0644,
+      require => Package['sensu'],
+      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
+    }
+    file { '/etc/sensu/conf.d/checks.json':
+      ensure  => present,
+      content => template('arcus/sensu/checks.json.erb'),
+      owner   => root,
+      group   => root,
+      mode    => 0644,
+      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
+    }
   }
 }
