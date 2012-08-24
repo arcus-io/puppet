@@ -48,6 +48,7 @@ class arcus::config inherits arcus::params {
     path    => '/etc/collectd/collectd.conf',
     content => template('arcus/collectd.conf.erb'),
     notify  => Service['collectd'],
+    require => Package['collectd'],
   }
   # apt update
   cron { 'arcus::config::cron_apt_update':

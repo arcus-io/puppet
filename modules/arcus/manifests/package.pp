@@ -1,5 +1,4 @@
 class arcus::package {
-  require "arcus::config"
 
   Exec {
     path      => "${::path}",

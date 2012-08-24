@@ -19,9 +19,9 @@ class arcus (
     $puppet_dashboard_url=$arcus::params::puppet_dashboard_url,
     $syslog_server=$arcus::params::syslog_server,
   ) inherits arcus::params {
-  class { 'arcus::config': }
-  class { 'arcus::package':
-    require => Class['arcus::config'],
+  class { 'arcus::package': }
+  class { 'arcus::config':
+    require => Class['arcus::package'],
   }
   class { 'arcus::service':
     require => [ Class['arcus::config'], Class['arcus::package'] ],
