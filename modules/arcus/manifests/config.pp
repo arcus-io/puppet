@@ -58,40 +58,44 @@ class arcus::config inherits arcus::params {
     minute    => '05',
   }
   # sensu
-  if ('sensu::server' in $classes) {
-    exec { 'arcus::config::restart_sensu_api':
-      command     => 'service sensu-api stop ; service sensu-api start',
-      refreshonly => true,
-    }
-    exec { 'arcus::config::restart_sensu_server':
-      command     => 'service sensu-server stop ; service sensu-server start',
-      refreshonly => true,
-    }
-    file { '/etc/sensu/handlers/mail.py':
-      ensure  => present,
-      source  => 'puppet:///modules/arcus/sensu/handlers/mail.py',
-      owner   => root,
-      group   => root,
-      mode    => 0755,
-      require => Package['sensu'],
-      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
-    }
-    file { '/etc/sensu/conf.d/handler_mail.json':
-      ensure  => present,
-      content => template('arcus/sensu/handlers/handler_mail.json.erb'),
-      owner   => root,
-      group   => root,
-      mode    => 0644,
-      require => Package['sensu'],
-      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
-    }
-    file { '/etc/sensu/conf.d/checks.json':
-      ensure  => present,
-      content => template('arcus/sensu/checks.json.erb'),
-      owner   => root,
-      group   => root,
-      mode    => 0644,
-      notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
-    }
+  exec { 'arcus::config::restart_sensu_api':
+    command     => 'service sensu-api stop ; service sensu-api start',
+    onlyif      => 'service sensu-api status',
+    refreshonly => true,
+  }
+  exec { 'arcus::config::restart_sensu_server':
+    command     => 'service sensu-server stop ; service sensu-server start',
+    onlyif      => 'service sensu-server status',
+    refreshonly => true,
+  }
+  exec { 'arcus::config::restart_sensu_client':
+    command     => 'service sensu-client stop ; service sensu-client start',
+    refreshonly => true,
+  }
+  file { '/etc/sensu/handlers/mail.py':
+    ensure  => present,
+    source  => 'puppet:///modules/arcus/sensu/handlers/mail.py',
+    owner   => root,
+    group   => root,
+    mode    => 0755,
+    require => Package['sensu'],
+    notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
+  }
+  file { '/etc/sensu/conf.d/handler_mail.json':
+    ensure  => present,
+    content => template('arcus/sensu/handlers/handler_mail.json.erb'),
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    require => Package['sensu'],
+    notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'] ],
+  }
+  file { '/etc/sensu/conf.d/checks.json':
+    ensure  => present,
+    content => template('arcus/sensu/checks.json.erb'),
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    notify  => [ Exec['arcus::config::restart_sensu_server'], Exec['arcus::config::restart_sensu_api'], Exec['arcus::config::restart_sensu_client'] ],
   }
 }

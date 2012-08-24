@@ -91,7 +91,7 @@ LoadPlugin network
 <% if @classes.include? 'nginx' %>
 LoadPlugin nginx
 <Plugin nginx>
-       URL "http://localhost/status?auto"
+       URL "http://localhost/nginx_status?auto"
 </Plugin>
 <% end %>
 #LoadPlugin notify_desktop
