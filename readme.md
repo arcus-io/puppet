@@ -15,3 +15,14 @@ To setup a Puppet master:
   * Symlink `/opt/arcus/common.yaml` to `/etc/puppet/hiera/common.yaml`
   * TODO: Clone the Hiera private configs to `/etc/puppet/hiera/`
   * Restart Puppet Master
+
+If using Redis as Hiera Backend:
+  * Install Redis and Hiera-Redis gems:
+    * `gem install redis`
+    * `gem install hiera-redis`
+  * Install the default common Hiera config into Redis:
+    * `python hiera.redis.py -h` for instructions
+
+## Using Nucleo as ENC
+To use Nucleo as an external node classifer (ENC) ** make sure Nucleo is running and node is registered:
+  * Edit `/etc/puppet/puppet.conf` to use `/opt/arcus/external_node` -- see `puppet.conf` for and example

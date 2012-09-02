@@ -1,10 +1,17 @@
 ---
 :hierarchy:
-    - %{arcus_organization}/%{hostname}
-    - %{arcus_organization}/%{operatingsystem}
-    - %{arcus_organization}/default
+    - %{arcus_key}/%{hostname}
+    - %{arcus_key}/%{operatingsystem}
+    - %{arcus_key}/default
     - common
 :backends:
-    - yaml
+    - redis
+:redis:
+    :host: 10.10.10.1
+    :port: 6379
+    :db: 10
+    #:password: nil
+    :soft_connection_failure: true
 :yaml:
     :datadir: '/etc/puppet/hiera'
+

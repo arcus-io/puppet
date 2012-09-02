@@ -1,4 +1,6 @@
 ---
+arcus_api_key: arcus-default-key
+arcus_api_url: http://10.10.10.1:5000/api/v1
 collectd_host: localhost
 collectd_port: 25826
 memcached_memory_limit: 64

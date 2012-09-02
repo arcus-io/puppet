@@ -1,16 +1,15 @@
 require 'yaml'
 
-Facter.add("arcus_organization") do
+Facter.add("arcus_key") do
   setcode do
-    organization = nil
+    key = nil
     begin
-      cfg = File::open('/etc/arcus.yaml')
-      yml = YAML::load(cfg.read())
-      organization = yml['organization']
+      cfg = File::open('/etc/arcus.key')
+      key = cfg.read()
     rescue
-      puts 'Unable to read /etc/arcus.yaml'
+      puts 'Unable to read /etc/arcus.key'
     end
-    organization
+    key
   end
 end
 

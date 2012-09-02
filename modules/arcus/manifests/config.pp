@@ -4,6 +4,8 @@ class arcus::config inherits arcus::params {
     logoutput => on_failure,
   }
   # vars
+  $arcus_api_key = hiera('arcus_api_key')
+  $arcus_api_url = hiera('arcus_api_url')
   $hostname = $::hostname
   $collectd_host = $arcus::collectd_host
   $collectd_port = $arcus::collectd_port
