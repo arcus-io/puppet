@@ -1,8 +1,8 @@
 ---
 :hierarchy:
-    - %{arcus_key}/%{hostname}
-    - %{arcus_key}/%{operatingsystem}
-    - %{arcus_key}/default
+    - %{arcus_key}:%{hostname}
+    - %{arcus_key}:%{operatingsystem}
+    - %{arcus_key}
     - common
 :backends:
     - redis
