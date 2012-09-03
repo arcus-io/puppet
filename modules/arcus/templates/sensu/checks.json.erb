@@ -43,7 +43,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p collectd -C 2 -w 3 -c 4",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "cron": {
       "handlers": [
@@ -52,7 +52,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -w 1 -c 1",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "elasticsearch": {
       "handlers": [
@@ -115,7 +115,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p ntpd -C 1 -w 1 -c 1",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "postfix": {
       "handlers": [
@@ -133,7 +133,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p puppet -C 1 -w 3 -c 5",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "rails": {
       "handlers": [
@@ -169,7 +169,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 1 -c 1",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "sensu-api": {
       "handlers": [
@@ -196,7 +196,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sshd -C 1 -w 10 -c 15",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "core" ]
     },
     "http_localhost": {
       "handlers": [

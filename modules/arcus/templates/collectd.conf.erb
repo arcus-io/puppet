@@ -108,6 +108,16 @@ LoadPlugin nginx
 LoadPlugin processes
 #LoadPlugin protocols
 #LoadPlugin python
+<% if @classes.include? 'redis' %>
+LoadPlugin redis
+<Plugin redis>
+  <Node "local">
+    Host "localhost"
+    Port "6379"
+    Timeout 2000
+  </Node>
+</Plugin>
+<% end %>
 #LoadPlugin rrdcached
 LoadPlugin rrdtool
 #LoadPlugin sensors
