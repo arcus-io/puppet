@@ -5,7 +5,9 @@ class sensu::config inherits sensu::params {
   }
   $hostname = $::hostname
   $fqdn = $::fqdn
-  $subscriptions = split($::classes, ',')
+  # this is a custom function (arcus/lib/puppet/parser/functions/get_arcus_modules.rb
+  # that queries the Nucleo ENC to get the current list of modules (classes)
+  $subscriptions = get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key'))
 
   $sensu_rabbitmq_host = $sensu::sensu_rabbitmq_host
   $sensu_rabbitmq_port = $sensu::sensu_rabbitmq_port
