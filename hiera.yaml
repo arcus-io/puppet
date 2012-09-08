@@ -1,9 +1,9 @@
 ---
 :hierarchy:
-    - %{arcus_key}:%{hostname}
-    - %{arcus_key}:%{operatingsystem}
-    - %{arcus_key}
-    - common
+    - hiera:%{arcus_key}:%{hostname}
+    - hiera:%{arcus_key}:%{operatingsystem}
+    - hiera:%{arcus_key}
+    - hiera:common
 :backends:
     - redis
 :redis:

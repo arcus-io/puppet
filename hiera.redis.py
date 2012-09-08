@@ -3,7 +3,7 @@ import sys
 from redis import Redis
 data = {
     'arcus_api_key': 'arcus-default-key',
-    'arcus_api_url': 'http://10.10.10.1:5000/api/v1',
+    'arcus_api_url': 'http://10.10.10.2:5000/api/v1',
     'collectd_host': 'localhost',
     'collectd_port': '25826',
     'memcached_memory_limit': '64',
@@ -45,7 +45,7 @@ data = {
 def main(host=None, port=None, db=0, password=None):
     rds = Redis(host=host, port=port, db=db, password=password)
     for k,v in data.iteritems():
-        rds.set('common:{0}'.format(k), v)
+        rds.set('hiera:common:{0}'.format(k), v)
 
 if __name__=='__main__':
     from optparse import OptionParser
