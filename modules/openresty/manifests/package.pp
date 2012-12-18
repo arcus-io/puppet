@@ -7,6 +7,7 @@ class openresty::package inherits openresty::params {
   if ! defined(Package["libncurses5-dev"]) { package { "libncurses5-dev": ensure => installed, } }
   if ! defined(Package["libpcre3-dev"]) { package { "libpcre3-dev": ensure => installed, } }
   if ! defined(Package["libssl-dev"]) { package { "libssl-dev": ensure => installed, } }
+  if ! defined(Package["liblua5.1-socket2"]) { package { "liblua5.1-socket2": ensure => installed, } }
   if ! defined(Package["perl"]) { package { "perl": ensure => installed, } }
   exec { 'openresty::package::install_openresty':
     cwd     => '/tmp',
@@ -17,6 +18,7 @@ class openresty::package inherits openresty::params {
       Package['libncurses5-dev'],
       Package['libpcre3-dev'],
       Package['libssl-dev'],
+      Package['liblua5.1-socket2'],
       Package['perl'],
     ],
   }
