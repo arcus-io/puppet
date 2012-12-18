@@ -1,0 +1,24 @@
+class openresty::package inherits openresty::params {
+  Exec {
+    path      => "${::path}",
+    logoutput => on_failure,
+  }
+  if ! defined(Package["libreadline-dev"]) { package { "libreadline-dev": ensure => installed, } }
+  if ! defined(Package["libncurses5-dev"]) { package { "libncurses5-dev": ensure => installed, } }
+  if ! defined(Package["libpcre3-dev"]) { package { "libpcre3-dev": ensure => installed, } }
+  if ! defined(Package["libssl-dev"]) { package { "libssl-dev": ensure => installed, } }
+  if ! defined(Package["perl"]) { package { "perl": ensure => installed, } }
+  exec { 'openresty::package::install_openresty':
+    cwd     => '/tmp',
+    command => "wget ${openresty::params::openresty_url} -O openresty.tar.gz ; tar zxf openresty.tar.gz ; cd ngx_* ; ./configure --with-luajit ; make -j2 install",
+    unless  => 'test -d /usr/local/openresty',
+    require  => [ 
+      Package['libreadline-dev'],
+      Package['libncurses5-dev'],
+      Package['libpcre3-dev'],
+      Package['libssl-dev'],
+      Package['perl'],
+    ],
+  }
+
+}
