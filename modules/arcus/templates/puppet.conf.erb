@@ -7,7 +7,7 @@
   reporturl = <%= @puppet_dashboard_url %>/reports/upload
   facts_terminus = yaml
   node_terminus = exec
-  <% if use_nucleo_enc == 'true' %>
+  <% if use_nucleo_enc %>
   external_nodes = /usr/bin/env ARCUS_API_URL=<%= @arcus_api_url %> /opt/arcus/external_node
   <% else %>
   external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=<%= @puppet_dashboard_url %> /usr/share/puppet-dashboard/bin/external_node

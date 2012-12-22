@@ -12,8 +12,12 @@ class arcus::config inherits arcus::params {
   $collectd_port = $arcus::collectd_port
   $puppet_dashboard_url = $arcus::puppet_dashboard_url
   $syslog_server = $arcus::syslog_server
+  $use_nucleo_enc = hiera('use_nucleo_enc') ? {
+    'true'  => true,
+    default => false,
+  }
   $classes = $arcus::config::use_nucleo_enc ? {
-    'true'  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
+    true  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
     default => [],
   }
   $memcached_listen_host = hiera('memcached_listen_host')
@@ -22,7 +26,6 @@ class arcus::config inherits arcus::params {
   $sensu_alert_title = hiera('sensu_alert_title')
   $sensu_alert_to_address = hiera('sensu_alert_to_address')
   $sensu_alert_from_address = hiera('sensu_alert_from_address')
-  $use_nucleo_enc = hiera('use_nucleo_enc')
   # timezone
   file { '/etc/timezone':
     ensure  => present,
