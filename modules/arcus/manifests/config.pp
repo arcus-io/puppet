@@ -12,7 +12,10 @@ class arcus::config inherits arcus::params {
   $collectd_port = $arcus::collectd_port
   $puppet_dashboard_url = $arcus::puppet_dashboard_url
   $syslog_server = $arcus::syslog_server
-  $classes = get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key'))
+  $classes = $arcus::config::use_nucleo_enc ? {
+    'true'  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
+    default => [],
+  }
   $memcached_listen_host = hiera('memcached_listen_host')
   $memcached_port = hiera('memcached_port')
   $mysql_root_password = hiera('mysql_root_password')
