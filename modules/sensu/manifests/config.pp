@@ -7,7 +7,11 @@ class sensu::config inherits sensu::params {
   $fqdn = $::fqdn
   # this is a custom function (arcus/lib/puppet/parser/functions/get_arcus_modules.rb
   # that queries the Nucleo ENC to get the current list of modules (classes)
-  $subscriptions = $arcus::config::use_nucleo_enc ? {
+  $use_nucleo_enc = hiera('use_nucleo_enc') ? {
+    'true'  => true,
+    default => false,
+  }
+  $subscriptions = $use_nucleo_enc ? {
     true    => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
     default => [],
   }
