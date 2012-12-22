@@ -40,6 +40,7 @@ data = {
     'sensu_dashboard_user': 'admin',
     'sensu_dashboard_pass': 'sensu',
     'syslog_server': 'localhost',
+    'use_nucleo_enc': 'true',
 }
 
 def main(host=None, port=None, db=0, password=None):
