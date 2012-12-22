@@ -19,6 +19,7 @@ class arcus::config inherits arcus::params {
   $sensu_alert_title = hiera('sensu_alert_title')
   $sensu_alert_to_address = hiera('sensu_alert_to_address')
   $sensu_alert_from_address = hiera('sensu_alert_from_address')
+  $use_nucleo_enc = hiera('use_nucleo_enc')
   # timezone
   file { '/etc/timezone':
     ensure  => present,
