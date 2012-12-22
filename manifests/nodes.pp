@@ -8,7 +8,7 @@ node puppet inherits basenode {
   # custom subscribe to restart apache (passenger) on puppet.conf changes
   service { "apache2":
     ensure    => running,
-    subscribe => File["base::config::puppet_conf"],
+    subscribe => File["arcus::config::puppet_conf"],
   }
 }
 
