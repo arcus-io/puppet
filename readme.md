@@ -8,7 +8,6 @@ To setup a Puppet master:
     * Restart Puppet Master (or Apache2 if using puppetmaster-passenger)
   * Clone the Arcus puppet repository to `/opt/arcus`
   * Symlink `/opt/arcus/manifests` to `/etc/puppet/manifests`
-  * Clone the Hiera repo (http://github.com/puppetlabs/hiera-puppet.git) to `/etc/puppet/modules/hiera-puppet`
   * Symlink `/opt/arcus/auth.conf` to `/etc/puppet/auth.conf` (for Puppet)
   * Copy `/opt/arcus/puppet.conf` to `/etc/puppet/puppet.conf` (for Puppet) -- no symlink ; file is managed with Puppet
   * Symlink `/opt/arcus/hiera.yaml` to `/etc/hiera.yml` (for the Hiera CLI) and `/etc/puppet/hiera.yaml` (for Puppet)
@@ -19,7 +18,7 @@ To setup a Puppet master:
 If using Redis as Hiera Backend:
   * Install Redis and Hiera-Redis gems:
     * `gem install redis`
-    * `gem install hiera-redis`
+    * `gem install hiera-redis hiera-redis-backend`
   * Install the default common Hiera config into Redis:
     * `python hiera.redis.py -h` for instructions
 
