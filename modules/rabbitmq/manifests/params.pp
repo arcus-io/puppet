@@ -1,4 +1,4 @@
 class rabbitmq::params {
-  $rabbitmq_user = 'usrmquser'
-  $rabbitmq_password = 'usrmqpassword'
+  $rabbitmq_user = hiera('rabbitmq_user', 'rmquser')
+  $rabbitmq_password = hiera('rabbitmq_password', 'rmqpassword')
 }

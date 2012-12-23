@@ -1,6 +1,6 @@
 class graylog2::params {
-  $server_name = "localhost"
-  $external_hostname = "localhost"
+  $server_name = hiera('graylog_server_name, "localhost")
+  $external_hostname = hiera('graylog_external_hostname', "localhost")
   $update_local_syslog = true
   $graylog_dir = "/opt/graylog"
   $graylog_server_dir = "/opt/graylog_server"
