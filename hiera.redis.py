@@ -56,8 +56,11 @@ data = {
 
 def main(host=None, port=None, db=0, password=None):
     rds = Redis(host=host, port=port, db=db, password=password)
+    key_base = 'hiera:common:{0}'
     for k,v in data.iteritems():
-        rds.set('hiera:common:{0}'.format(k), v)
+        # only add key if doesn't exist
+        if not rds.get(key_base.format(k)):
+            rds.set(key_base.format(k), v)
 
 if __name__=='__main__':
     from optparse import OptionParser
