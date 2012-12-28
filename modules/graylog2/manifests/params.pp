@@ -11,4 +11,5 @@ class graylog2::params {
   $mongodb_data_dir = "/opt/mongodb_data"
   $elasticsearch_dir = "/opt/elasticsearch"
   $elasticsearch_url = "https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.18.6.tar.gz"
+  $iptables_hosts = hiera_array('graylog_iptables_hosts', ['0.0.0.0'])
 }

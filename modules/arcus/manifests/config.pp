@@ -4,15 +4,15 @@ class arcus::config inherits arcus::params {
     logoutput => on_failure,
   }
   # vars
-  $arcus_api_key = hiera('arcus_api_key')
-  $arcus_api_url = hiera('arcus_api_url')
+  $arcus_api_key = $arcus::params::arcus_api_key
+  $arcus_api_url = $arcus::params::arcus_api_url
   $fqdn = $::fqdn
   $hostname = $::hostname
   $collectd_host = $arcus::collectd_host
   $collectd_port = $arcus::collectd_port
   $puppet_dashboard_url = $arcus::puppet_dashboard_url
   $syslog_server = $arcus::syslog_server
-  $use_nucleo_enc = hiera('use_nucleo_enc') ? {
+  $use_nucleo_enc = hiera('use_nucleo_enc', false) ? {
     'true'  => true,
     default => false,
   }
@@ -20,12 +20,13 @@ class arcus::config inherits arcus::params {
     true  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
     default => [],
   }
-  $memcached_listen_host = hiera('memcached_listen_host')
-  $memcached_port = hiera('memcached_port')
-  $mysql_root_password = hiera('mysql_root_password')
-  $sensu_alert_title = hiera('sensu_alert_title')
-  $sensu_alert_to_address = hiera('sensu_alert_to_address')
-  $sensu_alert_from_address = hiera('sensu_alert_from_address')
+  $memcached_listen_host = $arcus::params::memcached_listen_host
+  $memcached_port = $arcus::params::memcached_port
+  $mysql_root_password = $arcus::params::mysql_root_password
+  $sensu_alert_title = $arcus::params::sensu_alert_title
+  $sensu_alert_to_address = $arcus::params::sensu_alert_to_address
+  $sensu_alert_from_address = $arcus::params::sensu_alert_from_address
+  $iptables_hosts = $arcus::params::iptables_hosts
   # timezone
   file { '/etc/timezone':
     ensure  => present,
@@ -42,6 +43,14 @@ class arcus::config inherits arcus::params {
     group   => root,
     mode    => 0644,
     content => template('arcus/puppet.conf.erb'),
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.default':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('arcus/iptables.erb'),
   }
   # syslog
   if ! defined(File['/etc/rsyslog.d/50-default.conf']) {

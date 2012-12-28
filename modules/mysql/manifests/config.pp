@@ -1,6 +1,7 @@
 class mysql::config inherits mysql::params {
   $os_ver = $::operatingsystemrelease
   $mysql_cmd = "mysql -u root -p${mysql::root_password}"
+  $iptables_hosts = $mysql::params::iptables_hosts
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
@@ -26,5 +27,13 @@ class mysql::config inherits mysql::params {
     content => template('mysql/my.cnf.erb'),
     require => Package['mysql-server'],
     notify  => Service['mysql'],
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.mysql':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('mysql/iptables.erb'),
   }
 }

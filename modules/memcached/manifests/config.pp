@@ -9,6 +9,7 @@ class memcached::config inherits memcached::params {
   $user = $memcached::user
   $connection_limit = $memcached::connection_limit
   $log_file = $memcached::log_file
+  $iptables_hosts = $memcached::iptables_hosts
   if ! defined(File['/etc/memcached.conf']) {
     file { '/etc/memcached.conf':
       alias   => 'memcached::config::memcached_conf',
@@ -19,5 +20,13 @@ class memcached::config inherits memcached::params {
       mode    => 0644,
       notify  => Service['memcached'],
     }
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.memcached':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('memcached/iptables.erb'),
   }
 }

@@ -7,7 +7,7 @@ class sensu::config inherits sensu::params {
   $fqdn = $::fqdn
   # this is a custom function (arcus/lib/puppet/parser/functions/get_arcus_modules.rb
   # that queries the Nucleo ENC to get the current list of modules (classes)
-  $use_nucleo_enc = hiera('use_nucleo_enc') ? {
+  $use_nucleo_enc = hiera('use_nucleo_enc', false) ? {
     'true'  => true,
     default => false,
   }
@@ -28,6 +28,15 @@ class sensu::config inherits sensu::params {
   $sensu_dashboard_port = $sensu::sensu_dashboard_port
   $sensu_dashboard_user = $sensu::sensu_dashboard_user
   $sensu_dashboard_pass = $sensu::sensu_dashboard_pass
+  $iptables_hosts = $sensu::params::iptables_hosts
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.sensu':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('sensu/iptables.erb'),
+  }
   file { '/etc/sensu/config.json':
     ensure  => present,
     content => template('sensu/config.json.erb'),

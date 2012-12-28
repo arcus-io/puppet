@@ -4,10 +4,14 @@ from redis import Redis
 data = {
     'arcus_api_key': 'arcus-default-key',
     'arcus_api_url': 'https://nucleo.arcus.io/api/v1',
+    'arcus_iptables_hosts': ['0.0.0.0'],
     'collectd_host': 'localhost',
     'collectd_port': '25826',
+    'graphite_iptables_hosts': ['0.0.0.0'],
+    'graylog_iptables_hosts': ['0.0.0.0'],
     'graylog_external_hostname': 'localhost',
     'graylog_server_name': 'localhost',
+    'memcached_iptables_hosts': ['0.0.0.0'],
     'memcached_memory_limit': '64',
     'memcached_user': 'memcache',
     'memcached_listen_host': '127.0.0.1',
@@ -18,13 +22,20 @@ data = {
     'mongodb_port': '27017',
     'mongodb_log_file': '/var/log/mongodb/mongodb.log',
     'mongodb_replica_set': 'nil',
+    'mongodb_iptables_hosts': ['0.0.0.0'],
     'mysql_root_password': 'root',
+    'mysql_iptables_hosts': ['0.0.0.0'],
+    'nginx_iptables_hosts': ['0.0.0.0'],
+    'openresty_iptables_hosts': ['0.0.0.0'],
     'puppet_dashboard_db_name': 'dashboard',
     'puppet_dashboard_db_username': 'dashboard',
     'puppet_dashboard_db_password': 'd@5hB0ard',
     'puppet_dashboard_url': 'http://puppet.local:3000',
+    'puppet_dashboard_iptables_hosts': ['0.0.0.0'],
     'rabbitmq_user': 'rmquser',
     'rabbitmq_password': 'rmqpassword',
+    'rabbitmq_iptables_hosts': ['0.0.0.0'],
+    'redis_iptables_hosts': ['0.0.0.0'],
     'redis_listen_host': '127.0.0.1',
     'redis_port': '6379',
     'redis_timeout': '300',
@@ -37,6 +48,7 @@ data = {
     'sensu_alert_title': 'Sensu Alert',
     'sensu_alert_to_address': 'root@localhost',
     'sensu_alert_from_address': 'sensu@arcus.io',
+    'sensu_iptables_hosts': ['0.0.0.0'],
     'sensu_rabbitmq_host': 'localhost',
     'sensu_rabbitmq_port': '5672',
     'sensu_rabbitmq_vhost': '/sensu',
@@ -59,8 +71,13 @@ def main(host=None, port=None, db=0, password=None):
     key_base = 'hiera:common:{0}'
     for k,v in data.iteritems():
         # only add key if doesn't exist
-        if not rds.get(key_base.format(k)):
-            rds.set(key_base.format(k), v)
+        if not rds.keys(key_base.format(k)):
+            if isinstance(v, str):
+                rds.set(key_base.format(k), v)
+            elif isinstance(v, list):
+                rds.sadd(key_base.format(k), v)
+            else:
+                print('Unknown data type ; skipping key: {0}'.format(k))
 
 if __name__=='__main__':
     from optparse import OptionParser

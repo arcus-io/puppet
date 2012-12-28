@@ -1,4 +1,5 @@
 class memcached::params {
+  $iptables_hosts = hiera_array('memcached_iptables_hosts', ['0.0.0.0'])
   $memory_limit = hiera('memcached_memory_limit', '64')
   $listen_host = hiera('memcached_listen_host', '127.0.0.1')
   $port = hiera('memcached_port', '11211')

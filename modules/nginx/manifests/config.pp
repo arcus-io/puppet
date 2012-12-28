@@ -1,5 +1,6 @@
 class nginx::config inherits nginx::params {
   $www_user = 'www-data'
+  $iptables_hosts = $nginx::params::iptables_hosts
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
@@ -19,5 +20,13 @@ class nginx::config inherits nginx::params {
     mode    => 0644,
     require => Package['nginx'],
     notify  => Service['nginx'],
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.nginx':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('nginx/iptables.erb'),
   }
 }

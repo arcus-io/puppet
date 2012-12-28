@@ -10,6 +10,7 @@ class mongodb::config inherits mongodb::params {
     'nil'   => false,
     default => $mongodb::replica_set,
   }
+  $iptables_hosts = $mongodb::params::iptables_hosts
   if ! defined(File['/etc/mongodb.conf']) {
     file { '/etc/mongodb.conf':
       alias   => 'mongodb::config::mongodb_conf',
@@ -20,5 +21,12 @@ class mongodb::config inherits mongodb::params {
       mode    => 0644,
       notify  => Service['mongodb'],
     }
+  }
+  file { '/tmp/.arcus.iptables.rules.mongodb':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('mongodb/iptables.erb'),
   }
 }

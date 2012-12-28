@@ -5,6 +5,15 @@ class graphite::config inherits graphite::params {
     logoutput => on_failure,
   }
   $organization = $::arcus_organization
+  $iptables_hosts = $graphite::params::iptables_hosts
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.graphite':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('graphite/iptables.erb'),
+  }
   file { '/etc/apache2/sites-available/default':
     ensure  => present,
     content => template('graphite/vhost-graphite.conf.erb'),

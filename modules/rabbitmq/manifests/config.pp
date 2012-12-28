@@ -1,4 +1,5 @@
 class rabbitmq::config inherits rabbitmq::params {
+  $iptables_hosts = $rabbitmq::params::iptables_hosts
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
@@ -13,5 +14,13 @@ class rabbitmq::config inherits rabbitmq::params {
     command     => "rabbitmqctl set_permissions ${rabbitmq::rabbitmq_user} \".*\" \".*\" \".*\"",
     user        => root,
     refreshonly => true,
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.rabbitmq':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('rabbitmq/iptables.erb'),
   }
 }

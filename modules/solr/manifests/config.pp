@@ -4,9 +4,18 @@ class solr::config inherits solr::params {
     undef   => [],
     default => $::system_environments,
   }
+  $iptables_hosts = $solr::params::iptables_hosts
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.solr':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('solr/iptables.erb'),
   }
   file { 'solr::config::tomcat_server_conf':
     path    => '/etc/tomcat6/server.xml',

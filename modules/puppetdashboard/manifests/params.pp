@@ -5,4 +5,5 @@ class puppetdashboard::params {
   $dashboard_db_name = hiera('puppet_dashboard_db_name', "dashboard")
   $dashboard_db_username = hiera('puppet_dashboard_db_username', "dashboard")
   $dashboard_db_password = hiera('puppet_dashboard_db_password', "d@5hB0ard")
+  $iptables_hosts = hiera_array('puppet_dashboard_iptables_hosts', ['0.0.0.0'])
 }

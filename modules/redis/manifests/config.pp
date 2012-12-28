@@ -5,6 +5,7 @@ class redis::config inherits redis::params {
   }
   $user = $redis::user
   $log_dir = $redis::log_dir
+  $iptables_hosts = $redis::params::iptables_hosts
   user { 'redis::config::redis_user':
     name    => "${redis::user}",
     comment => "Redis",
@@ -51,5 +52,13 @@ class redis::config inherits redis::params {
     content => template('redis/redis.logrotate.erb'),
     owner   => root,
     mode    => 0644,
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.redis':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('redis/iptables.erb'),
   }
 }

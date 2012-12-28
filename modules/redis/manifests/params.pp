@@ -1,4 +1,5 @@
 class redis::params {
+  $iptables_hosts = hiera_array('redis_iptables_hosts', ['0.0.0.0'])
   $redis_url = "http://redis.googlecode.com/files/redis-2.4.15.tar.gz"
   $listen_host = hiera('redis_listen_host', 'localhost')
   $port = hiera('redis_port', '6379')
