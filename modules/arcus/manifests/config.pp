@@ -71,7 +71,7 @@ class arcus::config inherits arcus::params {
   }
   # apt update
   cron { 'arcus::config::cron_apt_update':
-    command   => 'apt-get update',
+    command   => 'apt-get update > /dev/null 2>&1',
     user      => root,
     hour      => '*',
     minute    => '05',

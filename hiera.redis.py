@@ -62,6 +62,7 @@ data = {
     'sensu_dashboard_port': '8080',
     'sensu_dashboard_user': 'admin',
     'sensu_dashboard_pass': 'sensu',
+    'solr_iptables_hosts': ['0.0.0.0'],
     'syslog_server': 'localhost',
     'use_nucleo_enc': 'true',
 }
