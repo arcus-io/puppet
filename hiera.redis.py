@@ -76,7 +76,8 @@ def main(host=None, port=None, db=0, password=None):
             if isinstance(v, str):
                 rds.set(key_base.format(k), v)
             elif isinstance(v, list):
-                rds.sadd(key_base.format(k), v)
+                for x in v:
+                    rds.sadd(key_base.format(k), x)
             else:
                 print('Unknown data type ; skipping key: {0}'.format(k))
 
