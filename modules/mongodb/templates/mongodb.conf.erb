@@ -24,7 +24,10 @@ rest = true
 
 # Turn on/off security.  Off is currently the default
 #noauth = true
+<% if @auth_enabled %>
 auth = true
+keyfile = /etc/mongodb.key
+<% end %>
 
 # Verbose logging output.
 #verbose = true

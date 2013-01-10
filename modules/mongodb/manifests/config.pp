@@ -10,6 +10,10 @@ class mongodb::config inherits mongodb::params {
     'nil'   => false,
     default => $mongodb::replica_set,
   }
+  $auth_enabled = $mongodb::params::auth_enabled ? {
+    'true'  => true,
+    default => false,
+  }
   $iptables_hosts = $mongodb::params::iptables_hosts
   if ! defined(File['/etc/mongodb.conf']) {
     file { '/etc/mongodb.conf':

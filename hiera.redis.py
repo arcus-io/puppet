@@ -18,6 +18,7 @@ data = {
     'memcached_port': '11211',
     'memcached_connection_limit': '1024',
     'memcached_log': '/var/log/memcached.log',
+    'mongodb_auth_enabled': False,
     'mongodb_db_path': '/var/lib/mongodb',
     'mongodb_port': '27017',
     'mongodb_log_file': '/var/log/mongodb/mongodb.log',
