@@ -12,7 +12,7 @@
   <% else %>
   external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=<%= @puppet_dashboard_url %> /usr/share/puppet-dashboard/bin/external_node
   <% end %>
-  modulepath = /opt/arcus/modules:/etc/puppet/modules
+  modulepath = /opt/arcus/modules:/etc/puppet/modules<% @module_dirs.each do |dir| %>:<%= dir %><% end %>
   reports = store, http
   data_binding_terminus = hiera
   hiera_config = /etc/hiera.yaml

@@ -22,6 +22,7 @@ class arcus::config inherits arcus::params {
   }
   $memcached_listen_host = $arcus::params::memcached_listen_host
   $memcached_port = $arcus::params::memcached_port
+  $module_dirs = $arcus::params::module_dirs
   $mysql_root_password = $arcus::params::mysql_root_password
   $sensu_alert_title = $arcus::params::sensu_alert_title
   $sensu_alert_to_address = $arcus::params::sensu_alert_to_address
