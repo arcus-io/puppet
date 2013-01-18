@@ -1,9 +1,9 @@
-# Puppet Module :: Memcached
+# Puppet Module :: MongoDB
 
-This installs and configures Memcached.
+This installs and configures MongoDB
 
 ## Usage
 
 Basic
 
-`include memcached`
+`include mongodb`
