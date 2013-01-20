@@ -31,6 +31,7 @@ data = {
     'nginx_iptables_hosts': ['0.0.0.0'],
     'openresty_iptables_hosts': ['0.0.0.0'],
     'postfix_iptables_hosts': ['0.0.0.0'],
+    'postgresql_iptables_hosts': ['0.0.0.0'],
     'puppet_dashboard_db_name': 'dashboard',
     'puppet_dashboard_db_username': 'dashboard',
     'puppet_dashboard_db_password': 'd@5hB0ard',
