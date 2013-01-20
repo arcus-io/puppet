@@ -2,6 +2,7 @@
 import sys
 from redis import Redis
 data = {
+    'apache2_iptables_hosts': ['0.0.0.0'],
     'arcus_api_key': 'arcus-default-key',
     'arcus_api_url': 'https://nucleo.arcus.io/api/v1',
     'arcus_iptables_hosts': ['0.0.0.0'],
