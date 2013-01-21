@@ -1,3 +1,4 @@
 <% @iptables_hosts.each do |host| %>
-iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
 <% end %>

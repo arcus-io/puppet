@@ -1,5 +1,5 @@
 class sensu::params {
-  $iptables_hosts = hiera_array('sensu_iptables_hosts', ['0.0.0.0'])
+  $iptables_hosts = hiera_array('sensu_iptables_hosts', ['0.0.0.0/0'])
   $sensu_rabbitmq_host = hiera('sensu_rabbitmq_host', 'localhost')
   $sensu_rabbitmq_port = hiera('sensu_rabbitmq_port', '5672')
   $sensu_rabbitmq_vhost = hiera('sensu_rabbitmq_vhost', '/sensu')

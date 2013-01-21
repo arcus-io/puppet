@@ -11,6 +11,6 @@ class arcus::params {
   $sensu_alert_title = hiera('sensu_alert_title', 'Sensu Alert')
   $sensu_alert_to_address = hiera('sensu_alert_to_address', 'root@localhost')
   $sensu_alert_from_address = hiera('sensu_alert_from_address', 'sensu@arcus.io')
-  $iptables_hosts = hiera_array('arcus_iptables_hosts', ['0.0.0.0'])
+  $iptables_hosts = hiera_array('arcus_iptables_hosts', ['0.0.0.0/0'])
   $module_dirs = hiera_array('module_dirs', [])
 }

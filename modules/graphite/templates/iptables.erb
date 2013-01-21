@@ -1,16 +1,16 @@
 <% @iptables_hosts.each do |host| %>
-iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2003 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 443 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2003 -j ACCEPT -s <%= host %>
 iptables -A INPUT -i eth0 -p udp --dport 2003 -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2004 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2013 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2014 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2023 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 2024 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 7002 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 8125 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 23632 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
-iptables -A INPUT -i eth0 -p tcp --dport 25826 -m state --state NEW,ESTABLISHED -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2004 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2013 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2014 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2023 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 2024 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 7002 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 8125 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 23632 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth0 -p tcp --dport 25826 -j ACCEPT -s <%= host %>
 iptables -A INPUT -i eth0 -p udp --dport 25826 -j ACCEPT -s <%= host %>
 <% end %>
