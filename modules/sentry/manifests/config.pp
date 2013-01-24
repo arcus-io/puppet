@@ -25,6 +25,7 @@ class sentry::config inherits sentry::params {
     exec { 'sentry::config::create_user':
       command   => "createuser -S -D -R -e ${sentry_db_user}",
       user      => 'postgres',
+      unless    => "echo 'select usename from pg_user;' | psql | grep ${sentry_db_user}",
       notify    => Exec['sentry::config::set_password'],
     }
     exec { 'sentry::config::set_password':
