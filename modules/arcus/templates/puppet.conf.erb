@@ -1,6 +1,6 @@
 [main]
   pluginsync = true
-  #ssldir = /var/lib/puppet/ssl
+  ssldir = /etc/puppet/ssl
 
 [master]
   allow_duplicate_certs = true
@@ -17,7 +17,9 @@
   reports = store, http
   data_binding_terminus = hiera
   hiera_config = /etc/hiera.yaml
+  ssldir = /var/lib/puppet/ssl
 
 [agent]
   store = true
+  report = true
   node_name_fact = fqdn

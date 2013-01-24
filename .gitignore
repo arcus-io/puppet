@@ -3,3 +3,4 @@
 *.swo
 *.log
 *DS_Store*
+.vagrant
