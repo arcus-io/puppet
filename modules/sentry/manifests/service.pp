@@ -1,8 +1,3 @@
 class sentry::service {
-  service { 'sentry-http':
-    ensure  => running,
-  }
-  service { 'sentry-udp':
-    ensure  => running,
-  }
+  if ! defined (Service['supervisor']) { service { 'supervisor': ensure => running, } }
 }

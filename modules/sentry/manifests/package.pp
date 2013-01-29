@@ -9,6 +9,7 @@ class sentry::package {
       ensure  => installed,
     }
   }
+  if ! defined(Package['supervisor']) { package { 'supervisor': ensure  => installed, } }
   # install pip
   exec { 'sentry::package::install_pip':
     command   => 'easy_install pip',

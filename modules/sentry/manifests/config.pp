@@ -60,28 +60,28 @@ class sentry::config inherits sentry::params {
       require     => Exec['sentry::config::create_sentry_admin'],
     }
   }
-  file { '/etc/init/sentry-http.conf':
+  file { '/etc/supervisor/conf.d/sentry-http.conf':
     ensure    => present,
     owner     => root,
     group     => root,
     mode      => 0644,
-    content   => template('sentry/upstart.http.conf.erb'),
+    content   => template('sentry/supervisor.http.conf.erb'),
+    require   => Package['supervisor'],
+    notify    => Exec['sentry::config::update_supervisor'],
   }
-  file { '/etc/init/sentry-udp.conf':
+  file { '/etc/supervisor/conf.d/sentry-udp.conf':
     ensure    => present,
     owner     => root,
     group     => root,
     mode      => 0644,
-    content   => template('sentry/upstart.udp.conf.erb'),
+    content   => template('sentry/supervisor.udp.conf.erb'),
+    require   => Package['supervisor'],
+    notify    => Exec['sentry::config::update_supervisor'],
   }
-  # symlink for upstart bug
-  file { '/etc/init.d/sentry-http':
-    ensure  => link,
-    target  => '/lib/init/upstart-job',
-  }
-  file { '/etc/init.d/sentry-udp':
-    ensure  => link,
-    target  => '/lib/init/upstart-job',
+  exec { 'sentry::config::update_supervisor':
+    command     => 'supervisorctl update',
+    user        => root,
+    refreshonly => true,
   }
   # iptables
   file { '/tmp/.arcus.iptables.rules.sentry':
