@@ -16,4 +16,5 @@ class sensu::params {
   $sensu_alert_title = hiera('sensu_alert_title', 'Sensu Alert')
   $sensu_alert_to_address = hiera('sensu_alert_to_address', 'root@localhost')
   $sensu_alert_from_address = hiera('sensu_alert_from_address', 'sensu@arcus.io')
+  $puppet_master_url = hiera('puppet_master_host', 'puppet')
 }

@@ -37,6 +37,7 @@ data = {
     'puppet_dashboard_db_password': 'd@5hB0ard',
     'puppet_dashboard_url': 'http://puppet.local:3000',
     'puppet_dashboard_iptables_hosts': ['0.0.0.0/0'],
+    'puppet_master_host': 'puppet',
     'rabbitmq_user': 'rmquser',
     'rabbitmq_password': 'rmqpassword',
     'rabbitmq_iptables_hosts': ['0.0.0.0/0'],
