@@ -134,7 +134,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p redis-server -C 1 -w 4 -c 5",
       "interval": 60,
-      "subscribers": [ "redis", "sensu" ]
+      "subscribers": [ "redis", "sensu::server" ]
     },
     "riemann": {
       "handlers": [
