@@ -2,16 +2,14 @@
   "checks": {
     "apache2": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p apache2 -C 1 -w 15 -c 25",
       "interval": 60,
-      "subscribers": [ "graphite" ]
+      "subscribers": [ "apache2" ]
     },
     "beam": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p beam -C 1 -w 1 -c 1",
@@ -20,7 +18,6 @@
     },
     "bucky": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p bucky -C 1 -w 4 -c 5",
@@ -29,7 +26,6 @@
     },
     "carbon-cache": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p carbon-cache.py -C 1 -w 1 -c 1",
@@ -38,7 +34,6 @@
     },
     "collectd": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p collectd -C 2 -w 3 -c 4",
@@ -47,7 +42,6 @@
     },
     "cron": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -w 1 -c 1",
@@ -56,7 +50,6 @@
     },
     "elasticsearch": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p elasticsearch -C 1 -w 1 -c 1",
@@ -65,7 +58,6 @@
     },
     "epmd": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p epmd -C 1 -w 1 -c 1",
@@ -74,7 +66,6 @@
     },
     "graylog2-server": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p graylog2-server -C 1 -w 1 -c 1",
@@ -83,7 +74,6 @@
     },
     "memcached": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p memcached -C 1 -w 1 -c 1",
@@ -92,7 +82,6 @@
     },
     "mongod": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p mongod -C 1 -w 1 -c 1",
@@ -101,7 +90,6 @@
     },
     "nginx": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p nginx -C 1 -w 15 -c 25",
@@ -110,7 +98,6 @@
     },
     "ntpd": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p ntpd -C 1 -w 1 -c 1",
@@ -119,16 +106,14 @@
     },
     "postfix": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p postfix -C 1 -w 1 -c 1",
       "interval": 60,
-      "subscribers": [ "default" ]
+      "subscribers": [ "postfix" ]
     },
     "puppet": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p puppet -C 1 -w 3 -c 5",
@@ -137,7 +122,6 @@
     },
     "rails": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p rails -C 1 -w 1 -c 1",
@@ -146,7 +130,6 @@
     },
     "redis-server": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p redis-server -C 1 -w 4 -c 5",
@@ -155,7 +138,6 @@
     },
     "riemann": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p riemann -C 2 -w 3 -c 3",
@@ -164,7 +146,6 @@
     },
     "rsyslogd": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 1 -c 1",
@@ -173,7 +154,6 @@
     },
     "sensu-api": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sensu-api -C 1 -w 1 -c 1",
@@ -182,7 +162,6 @@
     },
     "sensu-dashboard": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sensu-dashboard -C 1 -w 1 -c 1",
@@ -191,7 +170,6 @@
     },
     "sshd": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sshd -C 1 -w 10 -c 15",
@@ -200,7 +178,6 @@
     },
     "http_localhost": {
       "handlers": [
-        "default",
         "mail"
       ],
       "command": "/etc/sensu/plugins/check-http.rb -u http://localhost/ -s false -r",
