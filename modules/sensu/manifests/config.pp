@@ -18,7 +18,7 @@ class sensu::config inherits sensu::params {
     true    => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
     default => [],
   }
-  $enc_classes = get_enc_classes($sensu::params::puppet_master_host),
+  $enc_classes = get_enc_classes($sensu::params::puppet_master_host)
   $sensu_rabbitmq_host = $sensu::sensu_rabbitmq_host
   $sensu_rabbitmq_port = $sensu::sensu_rabbitmq_port
   $sensu_rabbitmq_vhost = $sensu::sensu_rabbitmq_vhost
