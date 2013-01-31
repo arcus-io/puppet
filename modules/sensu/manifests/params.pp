@@ -13,4 +13,7 @@ class sensu::params {
   $sensu_dashboard_port = hiera('sensu_dashboard_port', '8080')
   $sensu_dashboard_user = hiera('sensu_dashboard_user', 'admin')
   $sensu_dashboard_pass = hiera('sensu_dashboard_pass', 'sensu')
+  $sensu_alert_title = hiera('sensu_alert_title', 'Sensu Alert')
+  $sensu_alert_to_address = hiera('sensu_alert_to_address', 'root@localhost')
+  $sensu_alert_from_address = hiera('sensu_alert_from_address', 'sensu@arcus.io')
 }

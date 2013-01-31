@@ -5,6 +5,9 @@ class sensu::config inherits sensu::params {
   }
   $hostname = $::hostname
   $fqdn = $::fqdn
+  $sensu_alert_title = $sensu::params::sensu_alert_title
+  $sensu_alert_to_address = $sensu::params::sensu_alert_to_address
+  $sensu_alert_from_address = $sensu::params::sensu_alert_from_address
   # this is a custom function (arcus/lib/puppet/parser/functions/get_arcus_modules.rb
   # that queries the Nucleo ENC to get the current list of modules (classes)
   $use_nucleo_enc = hiera('use_nucleo_enc', false) ? {
@@ -69,5 +72,46 @@ class sensu::config inherits sensu::params {
     ensure  => present,
     source  => 'puppet:///modules/sensu/plugins/check-http.rb',
     mode    => 0755,
+  }
+  # sensu
+  exec { 'sensu::config::restart_sensu_api':
+    command     => 'service sensu-api stop ; service sensu-api start',
+    onlyif      => 'service sensu-api status',
+    refreshonly => true,
+  }
+  exec { 'sensu::config::restart_sensu_server':
+    command     => 'service sensu-server stop ; service sensu-server start',
+    onlyif      => 'service sensu-server status',
+    refreshonly => true,
+  }
+  exec { 'sensu::config::restart_sensu_client':
+    command     => 'service sensu-client stop ; service sensu-client start',
+    refreshonly => true,
+  }
+  file { '/etc/sensu/handlers/mail.py':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/handlers/mail.py',
+    owner   => root,
+    group   => root,
+    mode    => 0755,
+    require => Package['sensu'],
+    notify  => [ Exec['sensu::config::restart_sensu_server'], Exec['sensu::config::restart_sensu_api'] ],
+  }
+  file { '/etc/sensu/conf.d/handler_mail.json':
+    ensure  => present,
+    content => template('sensu/handlers/handler_mail.json.erb'),
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    require => Package['sensu'],
+    notify  => [ Exec['sensu::config::restart_sensu_server'], Exec['sensu::config::restart_sensu_api'] ],
+  }
+  file { '/etc/sensu/conf.d/checks.json':
+    ensure  => present,
+    content => template('sensu/checks.json.erb'),
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    notify  => [ Exec['sensu::config::restart_sensu_server'], Exec['sensu::config::restart_sensu_api'], Exec['sensu::config::restart_sensu_client'] ],
   }
 }

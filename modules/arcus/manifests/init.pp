@@ -20,9 +20,8 @@ class arcus (
     $syslog_server=$arcus::params::syslog_server,
   ) inherits arcus::params {
   class { 'arcus::package': }
-  class { 'sensu': }
   class { 'arcus::config':
-    require => [ Class['sensu'], Class['arcus::package'] ],
+    require => [ Class['arcus::package'] ],
   }
   class { 'arcus::service':
     require => [ Class['arcus::config'], Class['arcus::package'] ],

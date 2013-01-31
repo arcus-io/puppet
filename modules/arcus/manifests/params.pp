@@ -8,9 +8,6 @@ class arcus::params {
   $memcached_listen_host = hiera('memcached_listen_host', '127.0.0.1')
   $memcached_port = hiera('memcached_port', '11211')
   $mysql_root_password = hiera('mysql_root_password', 'root')
-  $sensu_alert_title = hiera('sensu_alert_title', 'Sensu Alert')
-  $sensu_alert_to_address = hiera('sensu_alert_to_address', 'root@localhost')
-  $sensu_alert_from_address = hiera('sensu_alert_from_address', 'sensu@arcus.io')
   $iptables_hosts = hiera_array('arcus_iptables_hosts', ['0.0.0.0/0'])
   $module_dirs = hiera_array('module_dirs', [])
 }
