@@ -44,7 +44,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -w 1 -c 1",
+      "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -c 25",
       "interval": 60,
       "subscribers": [ "core" ]
     },
