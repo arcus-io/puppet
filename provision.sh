@@ -33,7 +33,7 @@ fi
 CWD=$PWD
 if [ "`hostname`" = "puppet.local" ] ; then
     echo "Configuring Puppet master"
-    DEBIAN_FRONTEND=noninteractive apt-get install -y puppetmaster-passenger puppet-dashboard mysql-server redis-server
+    DEBIAN_FRONTEND=noninteractive apt-get install -y puppetmaster-passenger puppet-dashboard puppetdb puppetdb-terminus mysql-server redis-server
     # configure puppet autosigning
     echo "*.local" > /etc/puppet/autosign.conf
     # setup dashboard db
@@ -54,14 +54,23 @@ production:
     # enable dashboard
     sed -i 's/.*START.*/START=yes/g' /etc/default/puppet-dashboard
     sed -i 's/.*START.*/START=yes/g' /etc/default/puppet-dashboard-workers
+    # puppet autosign dev
+    echo "*.local" > /etc/puppet/autosign.conf
     # hiera
     gem install --no-ri --no-rdoc hiera hiera-puppet redis hiera-redis hiera-redis-backend
-    ln -sf /mnt/hgfs/arcus-puppet/auth.conf /etc/puppet/auth.conf
-    ln -sf /mnt/hgfs/arcus-puppet/hiera.yaml /etc/hiera.yaml
+    ln -sf /mnt/arcus-puppet/auth.conf /etc/puppet/auth.conf
+    ln -sf /mnt/arcus-puppet/puppet.conf /etc/puppet/puppet.conf
+    ln -sf /mnt/arcus-puppet/puppetdb.conf /etc/puppet/puppetdb.conf
+    ln -sf /mnt/arcus-puppet/routes.yaml /etc/puppet/routes.yaml
+    ln -sf /mnt/arcus-puppet/hiera.yaml /etc/hiera.yaml
+    sed -i 's/#host = localhost/host = 0.0.0.0/g' /etc/puppetdb/conf.d/jetty.ini
+    /etc/init.d/apache2 restart
+    update-rc.d puppetdb defaults
+    /etc/init.d/puppetdb restart
     # hiera defaults
     pip install redis
     echo "Loading Hiera defaults into Redis"
-    python /vagrant/hiera.redis.py
+    python /mnt/arcus-puppet/hiera.redis.py
     # configure init script (hangs over ssh)
     sed -i 's/.*start-stop-daemon --start.*/DASHBOARD_CMD=\"${DASHBOARD_RUBY} ${DASHBOARD_HOME}\/script\/server -e ${DASHBOARD_ENVIRONMENT} -p ${DASHBOARD_PORT} -b ${DASHBOARD_IFACE} -d\"\n\tsu -s \/bin\/sh -c "${DASHBOARD_CMD}" ${DASHBOARD_USER}\n\tlocal PID=$(pgrep -f "${DASHBOARD_CMD}")\n\techo $PID > ${PIDFILE}/g' /etc/init.d/puppet-dashboard
     # set sandbox values for hiera

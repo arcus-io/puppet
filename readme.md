@@ -12,7 +12,6 @@ To setup a Puppet master:
   * Copy `/opt/arcus/puppet.conf` to `/etc/puppet/puppet.conf` (for Puppet) -- no symlink ; file is managed with Puppet
   * Symlink `/opt/arcus/hiera.yaml` to `/etc/hiera.yml` (for the Hiera CLI) and `/etc/puppet/hiera.yaml` (for Puppet)
   * Symlink `/opt/arcus/common.yaml` to `/etc/puppet/hiera/common.yaml`
-  * TODO: Clone the Hiera private configs to `/etc/puppet/hiera/`
   * Restart Puppet Master
 
 If using Redis as Hiera Backend:
@@ -25,3 +24,24 @@ If using Redis as Hiera Backend:
 ## Using Nucleo as ENC
 To use Nucleo as an external node classifer (ENC) ** make sure Nucleo is running and node is registered:
   * Edit `/etc/puppet/puppet.conf` to use `/opt/arcus/external_node` -- see `puppet.conf` for and example
+
+# Vagrant
+The easiest way to get a functioning development setup is to use [Vagrant](http://www.vagrantup.com/).  A multi-vm setup is provided and will setup a complete Puppet, Puppet Dashboard, and Puppet DB environment.
+
+## Puppet Master
+To launch a puppet master:
+
+`vagrant up puppetmaster`
+
+This will launch a VM and configure Puppet.  Use the following links to access the dashboard services:
+
+Puppet Dashboard: http://localhost:3000
+Puppet DB Dashboard: http://localhost:8080
+
+To launch a node, use either the util or sandbox definitions.
+
+`vagrant up sandbox`
+
+This will launch a VM and automatically provision with the Puppet master.  You can then
+use the Puppet Dashboard to create classes and attach those to nodes.  On next
+refresh, the node will apply those modules.
