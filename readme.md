@@ -35,8 +35,8 @@ To launch a puppet master:
 
 This will launch a VM and configure Puppet.  Use the following links to access the dashboard services:
 
-Puppet Dashboard: http://localhost:3000
-Puppet DB Dashboard: http://localhost:8080
+* Puppet Dashboard: http://localhost:3000
+* Puppet DB Dashboard: http://localhost:8080
 
 To launch a node, use either the util or sandbox definitions.
 
