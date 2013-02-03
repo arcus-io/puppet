@@ -1,5 +1,5 @@
 [program:sentry-udp]
-command=sentry --config=/etc/sentry.conf.py start udp
+command=<%= @sentry_ve_dir %>/bin/sentry --config=/etc/sentry.conf.py start udp
 autostart=true
 autorestart=true
 redirect_stderr=true

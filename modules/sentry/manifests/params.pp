@@ -8,4 +8,5 @@ class sentry::params {
   $sentry_db_password = hiera('sentry_db_user', 's3ntryapp')
   $sentry_url_prefix = hiera('sentry_url_prefix', 'http://sentry.local')
   $sentry_key = hiera('sentry_key', 'abcdefg12345')
+  $sentry_ve_dir = hiera('sentry_ve_dir', '/opt/sentry')
 }

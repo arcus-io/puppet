@@ -29,6 +29,7 @@ Vagrant::Config.run do |config|
     util_config.vm.forward_port 7002, 7002 # graphite
     util_config.vm.forward_port 80, 8026 # graphite
     util_config.vm.forward_port 8080, 8086 # sensu-dashboard
+    util_config.vm.forward_port 9000, 9000 # sentry
   end
 
   config.vm.define :sandbox do |sandbox_config|

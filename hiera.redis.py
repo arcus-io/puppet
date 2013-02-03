@@ -77,6 +77,7 @@ data = {
     'sentry_db_password': 's3ntryapp',
     'sentry_url_prefix': 'http://sentry.local',
     'sentry_key': 'abcdefg12345',
+    'sentry_ve_dir': '/opt/sentry',
     'solr_iptables_hosts': ['0.0.0.0/0'],
     'syslog_server': 'localhost',
     'use_nucleo_enc': 'false',
