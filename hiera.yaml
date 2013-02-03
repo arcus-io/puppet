@@ -7,9 +7,9 @@
 :backends:
     - redis
 :redis:
-    :host: 10.10.10.1
+    :host: localhost
     :port: 6379
-    :db: 10
+    :db: 0
     #:password: nil
     :soft_connection_failure: true
 :yaml:

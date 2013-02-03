@@ -18,7 +18,7 @@ class arcus::config inherits arcus::params {
   }
   $classes = $arcus::config::use_nucleo_enc ? {
     true  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
-    default => [],
+    default => get_enc_classes(),
   }
   $memcached_listen_host = $arcus::params::memcached_listen_host
   $memcached_port = $arcus::params::memcached_port

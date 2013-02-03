@@ -1,6 +1,5 @@
 *.un~
-*.swp
-*.swo
+*.sw*
 *.log
 *DS_Store*
 .vagrant

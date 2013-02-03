@@ -79,7 +79,7 @@ data = {
     'sentry_key': 'abcdefg12345',
     'solr_iptables_hosts': ['0.0.0.0/0'],
     'syslog_server': 'localhost',
-    'use_nucleo_enc': 'true',
+    'use_nucleo_enc': 'false',
 }
 
 def main(host=None, port=None, db=0, password=None):

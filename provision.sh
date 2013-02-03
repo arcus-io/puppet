@@ -72,7 +72,7 @@ production:
     echo "Loading Hiera defaults into Redis"
     python /mnt/arcus-puppet/hiera.redis.py
     # configure init script (hangs over ssh)
-    sed -i 's/.*start-stop-daemon --start.*/DASHBOARD_CMD=\"${DASHBOARD_RUBY} ${DASHBOARD_HOME}\/script\/server -e ${DASHBOARD_ENVIRONMENT} -p ${DASHBOARD_PORT} -b ${DASHBOARD_IFACE} -d\"\n\tsu -s \/bin\/sh -c "${DASHBOARD_CMD}" ${DASHBOARD_USER}\n\tlocal PID=$(pgrep -f "${DASHBOARD_CMD}")\n\techo $PID > ${PIDFILE}/g' /etc/init.d/puppet-dashboard
+    sed -i 's/.*start-stop-daemon --start.*/DASHBOARD_CMD=\"${DASHBOARD_RUBY} ${DASHBOARD_HOME}\/script\/server -e ${DASHBOARD_ENVIRONMENT} -p ${DASHBOARD_PORT} -b ${DASHBOARD_IFACE} -d\"\n\tsu -s \/bin\/sh -c "${DASHBOARD_CMD}" ${DASHBOARD_USER}\n\techo \"$(pgrep -f "${DASHBOARD_CMD}")\" > ${PIDFILE}\n/g' /etc/init.d/puppet-dashboard
     # set sandbox values for hiera
     echo "set hiera:common:graylog_server_name util.local" | redis-cli
     echo "set hiera:common:collectd_host util.local" | redis-cli
