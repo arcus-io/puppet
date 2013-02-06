@@ -14,6 +14,14 @@ class rabbitmq::config inherits rabbitmq::params {
     command     => "rabbitmqctl set_permissions ${rabbitmq::rabbitmq_user} \".*\" \".*\" \".*\"",
     user        => root,
     refreshonly => true,
+    notify      => Exec['rabbitmq::config::enable_management_plugin'],
+  }
+  exec { 'rabbitmq::config::enable_management_plugin':
+    command     => "bash -c '/usr/lib/rabbitmq/lib/rabbitmq_*/sbin/rabbitmq-plugins enable rabbitmq_management'",
+    user        => 'root',
+    environment => "HOME=/root",
+    refreshonly => true,
+    notify      => Service['rabbitmq-server'],
   }
   # iptables
   file { '/tmp/.arcus.iptables.rules.rabbitmq':
