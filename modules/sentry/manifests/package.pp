@@ -36,7 +36,7 @@ class sentry::package {
   exec { 'sentry::package::install_sentry':
     command   => "${sentry_ve_dir}/bin/pip install sentry",
     user      => root,
-    unless    => 'test -e /usr/local/bin/sentry',
+    unless    => "test -e ${sentry_ve_dir}/bin/sentry",
     require   => [ Exec['sentry::package::install_pip'], Exec['sentry::package::create_ve'] ],
   }
   # install eventlet
