@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
     pm_config.vm.host_name = "puppet.local"
     pm_config.vm.network :hostonly, "10.10.10.25"
     pm_config.vm.forward_port 80, 8180 # http
-    pm_config.vm.forward_port 8080, 8080 # http
+    pm_config.vm.forward_port 8080, 8080 # http-puppetdb-dashboard
     pm_config.vm.forward_port 8081, 8081 # http-puppetdb
     pm_config.vm.forward_port 443, 8143 # https
     pm_config.vm.forward_port 3000, 3000 # puppet-dashboard
