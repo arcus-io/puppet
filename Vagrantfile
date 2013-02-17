@@ -5,6 +5,7 @@ Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.provision :shell, :path => "provision.sh"
+  config.ssh.forward_agent = true
 
   config.vm.define :puppetmaster do |pm_config|
     pm_config.vm.host_name = "puppet.local"
