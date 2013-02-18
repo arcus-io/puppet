@@ -17,6 +17,7 @@ class sentry::package {
     command   => 'easy_install pip',
     user      => root,
     unless    => 'test -e /usr/local/bin/pip',
+    require   => Package['python-setuptools'],
   }
   # install virtualenv
   exec { 'sentry::package::install_virtualenv':
