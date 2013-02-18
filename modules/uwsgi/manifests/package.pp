@@ -6,6 +6,7 @@ class uwsgi::package inherits uwsgi::params {
   if ! defined(Package["libxslt-dev"]) { package { "libxslt-dev": ensure => installed, } }
   if ! defined(Package["libxml2-dev"]) { package { "libxml2-dev": ensure => installed, } }
   if ! defined(Package["libssl-dev"]) { package { "libssl-dev": ensure => installed, } }
+  if ! defined(Package["python-dev"]) { package { "python-dev": ensure => installed, } }
   if ! defined(Package["python-setuptools"]) { package { "python-setuptools": ensure => installed, } }
   if ! defined(Package["supervisor"]) { package { "supervisor": ensure => installed, } }
   # install pip
@@ -23,6 +24,7 @@ class uwsgi::package inherits uwsgi::params {
       Package['libxslt-dev'],
       Package['libxml2-dev'],
       Package['libssl-dev'],
+      Package['python-dev'],
       Exec['uwsgi::package::install_pip'],
     ],
   }
