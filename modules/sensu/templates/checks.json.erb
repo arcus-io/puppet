@@ -86,7 +86,7 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p mongod -C 1 -w 1 -c 1",
       "interval": 60,
-      "subscribers": [ "graylog2" ]
+      "subscribers": [ "graylog2", "mongodb" ]
     },
     "nginx": {
       "handlers": [
