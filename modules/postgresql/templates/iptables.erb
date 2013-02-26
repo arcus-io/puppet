@@ -1,4 +1,6 @@
 <% @iptables_hosts.each do |host| %>
 iptables -A INPUT -i eth0 -p tcp --dport 5432 -j ACCEPT -s <%= host %>
 iptables -A INPUT -i eth0 -p tcp --dport 6432 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth1 -p tcp --dport 5432 -j ACCEPT -s <%= host %>
+iptables -A INPUT -i eth1 -p tcp --dport 6432 -j ACCEPT -s <%= host %>
 <% end %>
