@@ -1,0 +1,19 @@
+#!/bin/bash
+export AUTH_FILE=/etc/pgbouncer/userlist.txt
+ 
+TMPFILE=$( mktemp )
+trap 'rm -f "$TMPFILE"' EXIT
+ 
+psql -qAtX -c 'SELECT $$"$$ || replace( usename, $$"$$, $$""$$) || $$" "$$ || replace( passwd, $$"$$, $$""$$ ) || $$"$$ from pg_shadow where passwd is not null order by 1' > "$TMPFILE"
+ 
+if [[ ! -s "$TMPFILE" ]]
+then
+    exit
+fi
+ 
+if diff -q "$AUTH_FILE" "$TMPFILE" &>/dev/null
+then
+    exit
+fi
+ 
+cat "$TMPFILE" > $AUTH_FILE
