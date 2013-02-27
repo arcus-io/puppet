@@ -30,7 +30,7 @@ class postgresql::config inherits postgresql::params {
     content => template('postgresql/sync_pg_users.sh.erb'),
   }
   cron { 'postgresql::config::pgbouncer_user_list_sync':
-    command   => '/etc/pgbouncer/sync_pg_users.sh',
+    command   => '/bin/bash /etc/pgbouncer/sync_pg_users.sh',
     user      => 'postgres',
     hour      => '*',
     minute    => '*',
