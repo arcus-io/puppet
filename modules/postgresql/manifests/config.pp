@@ -19,6 +19,7 @@ class postgresql::config inherits postgresql::params {
     group   => 'postgres',
     mode    => 0640,
     content => template('postgresql/pgbouncer.ini.erb'),
+    notify  => Service['pgbouncer'],
   }
   # this script keeps the pgbouncer user list and postgres user passwords in sync
   file { '/etc/pgbouncer/sync_pg_users.sh':
