@@ -88,6 +88,14 @@
       "interval": 60,
       "subscribers": [ "graylog2", "mongodb" ]
     },
+    "mongodb_admin": {
+      "handlers": [
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-http.rb -u http://localhost:28017/ -s false",
+      "interval": 60,
+      "subscribers": [ "mongodb" ]
+    },
     "nginx": {
       "handlers": [
         "mail"
