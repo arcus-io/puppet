@@ -18,14 +18,14 @@
 #
 # === Copyright
 #
-# Copyright 2012 Arcus, unless otherwise noted.
+# Copyright 2013 Arcus, unless otherwise noted.
 #
 class solr (
+    $configure=$solr::params::configure,
   ) inherits solr::params {
-
   class { 'solr::package': }
   class { 'solr::config':
-    require => Class['solr::package'],
+    require   => Class['solr::package'],
   }
   class { 'solr::service':
     require => [ Class['solr::config'], Class['solr::package'] ],
