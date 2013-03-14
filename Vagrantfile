@@ -36,10 +36,12 @@ Vagrant::Config.run do |config|
   config.vm.define :sandbox do |sandbox_config|
     sandbox_config.vm.host_name = "sandbox.local"
     sandbox_config.vm.network :hostonly, "10.10.10.27"
+    sandbox_config.vm.forward_port 80, 8000 # http
     #sandbox_config.vm.forward_port 9000, 9000 # sentry
     #sandbox_config.vm.forward_port 5672, 5672 # rabbitmq
     sandbox_config.vm.forward_port 8983, 8983 # solr
     #sandbox_config.vm.forward_port 55672, 55672 # rabbitmq-mgmt
     sandbox_config.vm.share_folder "puppet_modules", "/mnt/puppet_modules", "modules"
+    sandbox_config.vm.share_folder "courseload", "/mnt/courseload", "../puppet-courseload/modules"
   end
 end
