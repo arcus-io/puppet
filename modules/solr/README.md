@@ -1,9 +1,9 @@
-# Puppet Module :: solrcloud
+# Puppet Module :: solr
 
-This installs and configures solrcloud
+This installs and configures solr
 
 ## Usage
 
 Basic
 
-`include solrcloud`
+`include solr`
