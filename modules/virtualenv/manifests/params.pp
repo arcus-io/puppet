@@ -1,0 +1,2 @@
+class virtualenv::params {
+}
