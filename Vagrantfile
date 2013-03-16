@@ -16,7 +16,6 @@ Vagrant::Config.run do |config|
     pm_config.vm.forward_port 443, 8143 # https
     pm_config.vm.forward_port 3000, 3000 # puppet-dashboard
     pm_config.vm.forward_port 8140, 8140 # puppet
-    pm_config.vm.customize ["modifyvm", :id, "--memory", 1024]
     pm_config.vm.share_folder "arcus_puppet", "/mnt/arcus-puppet", "./"
     pm_config.vm.share_folder "puppet_manifests", "/etc/puppet/manifests", "manifests"
     pm_config.vm.share_folder "puppet_modules", "/etc/puppet/modules", "modules"
@@ -45,4 +44,18 @@ Vagrant::Config.run do |config|
     sandbox_config.vm.share_folder "puppet_modules", "/mnt/puppet_modules", "modules"
     sandbox_config.vm.share_folder "courseload", "/mnt/courseload", "../puppet-courseload/modules"
   end
+end
+
+Vagrant.configure("2") do |config|
+    config.vm.provider :virtualbox do |vb|
+        config.vm.define :puppetmaster do |pm|
+            vb.customize ["modifyvm", :id, "--memory", 1024]
+        end
+    end
+
+    config.vm.provider :vmware_fusion do |v|
+        config.vm.define :puppetmaster do |pm|
+            v.vmx["memsize"] = "1024"
+        end
+    end
 end
