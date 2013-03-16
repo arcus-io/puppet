@@ -15,7 +15,7 @@ class virtualenv::package inherits virtualenv::params {
   exec { 'virtualenv::package::install_virtualenv':
     cwd     => '/tmp',
     command => 'pip install virtualenv',
-    unless  => 'test -d /usr/local/bin/virtualenv',
+    unless  => 'test -e /usr/local/bin/virtualenv',
     require  => [ 
       Package['python-dev'],
       Exec['virtualenv::package::install_pip'],
