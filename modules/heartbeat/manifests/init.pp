@@ -18,7 +18,7 @@
 #
 # === Copyright
 #
-# Copyright 2012 Arcus, unless otherwise noted.
+# Copyright 2013 Arcus, unless otherwise noted.
 #
 class heartbeat inherits heartbeat::params {
   class { 'heartbeat::package': }
