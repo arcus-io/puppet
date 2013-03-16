@@ -1,0 +1,13 @@
+debugfile /var/log/ha-debug
+logfile /var/log/ha-log
+logfacility local0
+deadtime 30
+warntime 10
+initdead 120
+udpport 694
+bcast eth0
+#mcast eth0 225.0.0.1 694 1 0
+#ucast eth0 192.168.1.2
+auto_failback on
+#node server1
+#node server2
