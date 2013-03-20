@@ -156,7 +156,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 1 -c 1",
+      "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 1 -c 3",
       "interval": 60,
       "subscribers": [ "core" ]
     },
@@ -164,7 +164,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p sensu-api -C 1 -w 1 -c 1",
+      "command": "/etc/sensu/plugins/check-procs.rb -p sensu-api -C 1 -w 1 -c 5",
       "interval": 60,
       "subscribers": [ "sensu::server" ]
     },
