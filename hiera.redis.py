@@ -81,6 +81,7 @@ data = {
     'sentry_key': 'abcdefg12345',
     'sentry_ve_dir': '/opt/sentry',
     'solr_configure': 'true',
+    'solr_version': '4',
     'solr_iptables_hosts': ['0.0.0.0/0'],
     'syslog_server': 'localhost',
     'use_nucleo_enc': 'false',
