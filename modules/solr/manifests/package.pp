@@ -8,7 +8,7 @@ class solr::package inherits solr::params {
   if ! defined(Package['openjdk-7-jre-headless']) { package { 'openjdk-7-jre-headless': ensure => installed, } }
   exec { 'solr::package::install_solr':
     cwd     => '/opt',
-    command => "wget ${solr::params::solr_url} -O /tmp/solr.tar.gz ; tar zxf /tmp/solr.tar.gz ; mv /opt/solr-* /opt/solr",
+    command => "wget ${solr::params::solr_url} -O /tmp/solr.tar.gz ; tar zxf /tmp/solr.tar.gz ; mv /opt/*solr* /opt/solr",
     unless  => 'test -d /opt/solr',
     require  => [ 
       Package['openjdk-7-jdk'],

@@ -22,6 +22,7 @@
 #
 class solr (
     $configure=$solr::params::configure,
+    $solr_url=$solr::params::solr_url,
   ) inherits solr::params {
   class { 'solr::package': }
   class { 'solr::config':
