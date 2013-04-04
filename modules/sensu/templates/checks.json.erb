@@ -120,6 +120,14 @@
       "interval": 60,
       "subscribers": [ "postfix" ]
     },
+    "postgres": {
+      "handlers": [
+        "mail"
+      ],
+      "command": "/etc/sensu/plugins/check-procs.rb -p postgres -C 1 -w 25 -c 30",
+      "interval": 60,
+      "subscribers": [ "postgresql" ]
+    },
     "puppet": {
       "handlers": [
         "mail"
