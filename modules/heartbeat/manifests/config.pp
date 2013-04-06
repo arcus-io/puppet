@@ -3,6 +3,7 @@ class heartbeat::config inherits heartbeat::params {
     path      => "${::path}",
     logoutput => on_failure,
   }
+  $iptables_hosts = $heartbeat::iptables_hosts
   file { '/etc/ha.d/ha.cf.sample':
     ensure  => present,
     owner   => root,
@@ -23,5 +24,13 @@ class heartbeat::config inherits heartbeat::params {
     group   => root,
     mode    => 0644,
     content => template('heartbeat/authkeys.sample.erb'),
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.heartbeat':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('heartbeat/iptables.erb'),
   }
 }
