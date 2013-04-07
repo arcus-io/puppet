@@ -21,6 +21,12 @@ class mysql::config inherits mysql::params {
       command     => "echo \"create user root@\'%\' identified by \'${mysql::root_password}\';\" | mysql -u root -p\'${mysql::root_password}\'",
       require     => Exec['mysql::config::set_root_password'],
       unless      => "echo \"select user,host from mysql.user;\" | mysql -u root -p\'${mysql::root_password}\' | grep root | grep %",
+      notify      => Exec['mysql::config::set_remote_privs'],
+    }
+    exec { 'mysql::config::set_remote_privs':
+      command     => "echo \"grant all privileges on *.* to root@\'%\' with grant option;\" | mysql -u root -p\'${mysql::root_password}\'",
+      require     => Exec['mysql::config::enable_remote'],
+      refreshonly  => true,
     }
   }
   file { 'mysql::config::mysql_config':
