@@ -22,6 +22,7 @@
 #
 class mysql (
     $root_password=$mysql::params::root_password,
+    $enable_remote_root=$mysql::params::enable_remote_root,
   ) inherits mysql::params {
   class { 'mysql::package': }
   class { 'mysql::config':
