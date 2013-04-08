@@ -1,5 +1,6 @@
 class haproxy::config inherits haproxy::params {
   $iptables_hosts = $haproxy::params::iptables_hosts
+  $haproxy_ports = $haproxy::params::haproxy_ports
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
