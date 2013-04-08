@@ -9,6 +9,7 @@ class openresty::package inherits openresty::params {
   if ! defined(Package["libssl-dev"]) { package { "libssl-dev": ensure => installed, } }
   if ! defined(Package["liblua5.1-dev"]) { package { "liblua5.1-dev": ensure => installed, } }
   if ! defined(Package["liblua5.1-socket2"]) { package { "liblua5.1-socket2": ensure => installed, } }
+  if ! defined(Package["make"]) { package { "make": ensure => installed, } }
   if ! defined(Package["perl"]) { package { "perl": ensure => installed, } }
   exec { 'openresty::package::install_openresty':
     cwd     => '/tmp',
