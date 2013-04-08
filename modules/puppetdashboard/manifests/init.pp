@@ -26,4 +26,7 @@ class puppetdashboard (
   class { 'puppetdashboard::package':
     require => Class['puppetdashboard::config'],
   }
+  class { 'puppetdashboard::service':
+    require => [ Class['puppetdashboard::config'], Class['puppetdashboard::package'] ],
+  }
 }
