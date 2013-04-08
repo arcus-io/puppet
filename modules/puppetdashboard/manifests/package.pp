@@ -57,14 +57,6 @@ class puppetdashboard::package {
     command     => "rm -f /usr/sbin/policy-rc.d",
     refreshonly => true,
   }
-  service { "puppet-dashboard":
-    ensure  => running,
-    require => Package["puppet-dashboard"],
-  }
-  service { "puppet-dashboard-workers":
-    ensure  => running,
-    require => Package["puppet-dashboard"],
-  }
   file { "puppetdashboard::package::dashboard_settings":
     path    => "/usr/share/puppet-dashboard/config/settings.yml",
     content => template("puppetdashboard/settings.yml.erb"),
@@ -72,7 +64,6 @@ class puppetdashboard::package {
     group   => root,
     mode    => 0644,
     require => Package["puppet-dashboard"],
-    notify  => [ Service["puppet-dashboard"], Service["puppet-dashboard-workers"] ],
   }
 
   # mysql config
@@ -111,7 +102,6 @@ class puppetdashboard::package {
       command     => "rake db:migrate",
       require     => [ File["puppetdashboard::package::dashboard_database_config"], Exec["puppetdashboard::package::update_alternatives"] ],
       refreshonly => true,
-      notify      => [ Service["puppet-dashboard"], Service["puppet-dashboard-workers"] ],
     }
   } else { # don't trigger db:migrate ; just install the config
     file { "puppetdashboard::package::dashboard_database_config":
@@ -121,7 +111,6 @@ class puppetdashboard::package {
       group   => "www-data",
       mode    => 0640,
       require => Package["puppet-dashboard"],
-      notify      => [ Service["puppet-dashboard"], Service["puppet-dashboard-workers"] ],
     }
   }
 }
