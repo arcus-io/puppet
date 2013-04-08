@@ -107,7 +107,8 @@ class puppetdashboard::package {
     }
     exec { "puppetdashboard::package::dashboard_configure":
       cwd         => "/usr/share/puppet-dashboard/",
-      command     => "rake RAILS_ENV=production db:migrate",
+      environment => "RAILS_ENV=production",
+      command     => "rake db:migrate",
       require     => [ File["puppetdashboard::package::dashboard_database_config"], Exec["puppetdashboard::package::update_alternatives"] ],
       unless      => "echo 'show databases;' | mysql -u root | grep ${puppetdashboard::params::dashboard_db_name}",
       refreshonly => true,

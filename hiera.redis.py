@@ -13,6 +13,7 @@ data = {
     'graylog_external_hostname': 'localhost',
     'graylog_server_name': 'localhost',
     'haproxy_iptables_hosts': ['0.0.0.0/0'],
+    'haproxy_ports': ['80', '443'],
     'heartbeat_iptables_hosts': ['0.0.0.0/0'],
     'memcached_iptables_hosts': ['0.0.0.0/0'],
     'memcached_memory_limit': '64',
