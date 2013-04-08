@@ -110,7 +110,6 @@ class puppetdashboard::package {
       environment => "RAILS_ENV=production",
       command     => "rake db:migrate",
       require     => [ File["puppetdashboard::package::dashboard_database_config"], Exec["puppetdashboard::package::update_alternatives"] ],
-      unless      => "echo 'show databases;' | mysql -u root | grep ${puppetdashboard::params::dashboard_db_name}",
       refreshonly => true,
       notify      => [ Service["puppet-dashboard"], Service["puppet-dashboard-workers"] ],
     }
