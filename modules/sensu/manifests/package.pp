@@ -28,7 +28,21 @@ class sensu::package {
       require => [ File['sensu::package::apt_source_list'], Exec['sensu::package::apt_update'] ],
     }
   }
-  if ! defined(Package['sensu-plugin']) { package { 'sensu-plugin': ensure => installed, provider => 'gem', } }
-  if ! defined(Package['carrier-pigeon']) { package { 'carrier-pigeon': ensure => installed, provider => 'gem', } }
+  if ! defined(Package['ruby']) { package { 'ruby': ensure => installed, } }
+  if ! defined(Package['rubygems']) { package { 'rubygems': ensure => installed, } }
+  if ! defined(Package['sensu-plugin']) { 
+    package { 'sensu-plugin':
+      ensure    => installed,
+      provider  => 'gem', 
+      require   => [ Package['ruby'], Package['rubygems'] ],
+    }
+  }
+  if ! defined(Package['carrier-pigeon']) {
+    package { 'carrier-pigeon':
+      ensure => installed,
+      provider => 'gem',
+      require   => [ Package['ruby'], Package['rubygems'] ],
+    }
+  }
 
 }
