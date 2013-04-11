@@ -116,7 +116,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p postfix -C 1 -w 1 -c 1",
+      "command": "/etc/sensu/plugins/check-procs.rb -p postfix -C 1 -w 5 -c 10",
       "interval": 60,
       "subscribers": [ "postfix" ]
     },
