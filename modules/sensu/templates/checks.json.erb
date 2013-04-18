@@ -36,7 +36,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p collectd -C 2 -w 6 -c 8",
+      "command": "/etc/sensu/plugins/check-procs.rb -p collectd -C 1 -w 20 -c 30",
       "interval": 60,
       "subscribers": [ "core" ]
     },
