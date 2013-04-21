@@ -11,6 +11,7 @@ class sentry::package {
     }
   }
   if ! defined(Package['supervisor']) { package { 'supervisor': ensure  => installed, } }
+  if ! defined(Package['python-dev']) { package { 'python-dev': ensure  => installed, } }
   if ! defined(Package['python-setuptools']) { package { 'python-setuptools': ensure  => installed, } }
   # install pip
   exec { 'sentry::package::install_pip':
