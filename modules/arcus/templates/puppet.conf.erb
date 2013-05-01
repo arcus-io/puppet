@@ -16,6 +16,13 @@
   modulepath = /opt/arcus/modules:/etc/puppet/modules<% @module_dirs.each do |dir| %>:<%= dir %><% end %>
   reports = store, http
   data_binding_terminus = hiera
+  <% if use_puppetdb == true %>
+  storeconfigs = true
+  storeconfigs_backend = puppetdb
+  reports = store, http, puppetdb
+  <% else %>
+  reports = store, http
+  <% end %>
   hiera_config = /etc/hiera.yaml
   ssldir = /var/lib/puppet/ssl
 

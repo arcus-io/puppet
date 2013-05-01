@@ -1,6 +1,7 @@
 class arcus::params {
   $arcus_api_key = hiera('arcus_api_key', 'arcus-default-key')
   $arcus_api_url = hiera('arcus_api_url', 'https://nucleo.arcus.io/api/v1')
+  $use_puppetdb = hiera('use_puppetdb', 'true')
   $collectd_host = hiera('collectd_host', 'localhost')
   $collectd_port = hiera('collectd_port', '25826')
   $puppet_dashboard_url = hiera('puppet_dashboard_url', 'http://puppet.local:3000')

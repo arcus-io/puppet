@@ -16,6 +16,10 @@ class arcus::config inherits arcus::params {
     'true'  => true,
     default => false,
   }
+  $use_puppetdb = hiera('use_puppetdb', false) ? {
+    'true'  => true,
+    default => false,
+  }
   $classes = $arcus::config::use_nucleo_enc ? {
     true  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
     default => get_enc_classes(),
@@ -35,13 +39,13 @@ class arcus::config inherits arcus::params {
     command     => 'dpkg-reconfigure -f noninteractive tzdata',
     refreshonly => true,
   }
-  file { 'arcus::config::puppet_conf':
-    path    => '/etc/puppet/puppet.conf',
-    owner   => root,
-    group   => root,
-    mode    => 0644,
-    content => template('arcus/puppet.conf.erb'),
-  }
+  #file { 'arcus::config::puppet_conf':
+  #  path    => '/etc/puppet/puppet.conf',
+  #  owner   => root,
+  #  group   => root,
+  #  mode    => 0644,
+  #  content => template('arcus/puppet.conf.erb'),
+  #}
   # iptables
   file { '/tmp/.arcus.iptables.rules.default':
     ensure  => present,

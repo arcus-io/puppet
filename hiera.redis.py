@@ -85,6 +85,7 @@ data = {
     'solr_version': '4',
     'solr_iptables_hosts': ['0.0.0.0/0'],
     'syslog_server': 'localhost',
+    'use_puppetdb': 'false',
     'use_nucleo_enc': 'false',
 }
 
