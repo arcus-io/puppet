@@ -39,13 +39,13 @@ class arcus::config inherits arcus::params {
     command     => 'dpkg-reconfigure -f noninteractive tzdata',
     refreshonly => true,
   }
-  #file { 'arcus::config::puppet_conf':
-  #  path    => '/etc/puppet/puppet.conf',
-  #  owner   => root,
-  #  group   => root,
-  #  mode    => 0644,
-  #  content => template('arcus/puppet.conf.erb'),
-  #}
+  file { 'arcus::config::puppet_conf':
+    path    => '/etc/puppet/puppet.conf',
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    content => template('arcus/puppet.conf.erb'),
+  }
   # iptables
   file { '/tmp/.arcus.iptables.rules.default':
     ensure  => present,
