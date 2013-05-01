@@ -4,6 +4,7 @@ This is the repository for the Arcus Cloud puppet configuration management.
 ## Master
 To setup a Puppet master:
   * Install Puppet (via the PuppetLabs repos)
+    * `apt-get install -y puppetmaster-passenger puppetdb puppetdb-terminus`
   * Install Hiera and Hiera-Puppet (`gem install hiera hiera-puppet`)
     * Restart Puppet Master (or Apache2 if using puppetmaster-passenger)
   * Clone the Arcus puppet repository to `/opt/arcus`
@@ -11,7 +12,7 @@ To setup a Puppet master:
   * Symlink `/opt/arcus/auth.conf` to `/etc/puppet/auth.conf` (for Puppet)
   * Copy `/opt/arcus/puppet.conf` to `/etc/puppet/puppet.conf` (for Puppet) -- no symlink ; file is managed with Puppet
   * Symlink `/opt/arcus/hiera.yaml` to `/etc/hiera.yml` (for the Hiera CLI) and `/etc/puppet/hiera.yaml` (for Puppet)
-  * Symlink `/opt/arcus/common.yaml` to `/etc/puppet/hiera/common.yaml`
+  * Symlink `/etc/puppet/ssl` to `/var/lib/puppet/ssl` (remove existing `/etc/puppet/ssl` dir first)
   * Restart Puppet Master
 
 If using Redis as Hiera Backend:
