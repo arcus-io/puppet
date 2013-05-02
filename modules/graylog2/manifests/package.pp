@@ -1,6 +1,8 @@
 class graylog2::package {
   require "graylog2::config"
 
+  $graylog_web_port = $graylog2::params::graylog_web_port
+
   Exec {
     path      => "${::path}",
     logoutput => on_failure,
