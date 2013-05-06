@@ -4,7 +4,7 @@ class sensu::client {
   service { 'sensu-client':
     enable    => true,
     ensure    => running,
-    provider  => 'upstart',
+    #provider  => 'upstart',
     require   => Package['sensu'],
     subscribe => [ File['/etc/sensu/config.json'], File['/etc/sensu/conf.d/client.json'] ],
   }

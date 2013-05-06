@@ -50,7 +50,7 @@ class sensu::server ($configure_rabbitmq=true, $configure_redis=true) {
   service { ['sensu-server', 'sensu-api', 'sensu-dashboard']:
     enable    => true,
     ensure    => running,
-    provider  => upstart,
+    #provider  => upstart,
     require   => Package['sensu'],
     subscribe => File['/etc/sensu/config.json'],
   }
