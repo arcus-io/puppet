@@ -1,4 +1,4 @@
-class arcus::package {
+class core::package {
 
   Exec {
     path      => "${::path}",

@@ -1,4 +1,4 @@
-class arcus::service {
+class core::service {
   if ! defined(Service['ssh']) {
     service { 'ssh':
       ensure  => running,

@@ -1,4 +1,4 @@
-class arcus::params {
+class core::params {
   $arcus_api_key = hiera('arcus_api_key', 'arcus-default-key')
   $arcus_api_url = hiera('arcus_api_url', 'https://nucleo.arcus.io/api/v1')
   $use_puppetdb = hiera('use_puppetdb', 'true')

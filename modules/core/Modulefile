@@ -1,4 +1,4 @@
-name    'arcus-arcus'
+name    'arcus-core'
 version '0.0.1'
 source 'UNKNOWN'
 author 'ehazlett'
