@@ -7,6 +7,7 @@ class sensu::config inherits sensu::params {
   $fqdn = $::fqdn
   $sensu_alert_title = $sensu::params::sensu_alert_title
   $sensu_alert_to_address = $sensu::params::sensu_alert_to_address
+  $sensu_alert_to_urgent_address = $sensu::params::sensu_alert_to_urgent_address
   $sensu_alert_from_address = $sensu::params::sensu_alert_from_address
   # this is a custom function (arcus/lib/puppet/parser/functions/get_arcus_modules.rb
   # that queries the Nucleo ENC to get the current list of modules (classes)
