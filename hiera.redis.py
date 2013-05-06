@@ -56,6 +56,7 @@ data = {
     'redis_log_dir': '/var/log/redis',
     'sensu_alert_title': 'Sensu Alert',
     'sensu_alert_to_address': 'root@localhost',
+    'sensu_alert_to_urgent_address': 'root@localhost',
     'sensu_alert_from_address': 'sensu@arcus.io',
     'sensu_iptables_hosts': ['0.0.0.0/0'],
     'sensu_rabbitmq_host': 'localhost',

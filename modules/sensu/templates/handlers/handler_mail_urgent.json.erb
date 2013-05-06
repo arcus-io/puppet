@@ -1,0 +1,8 @@
+{
+  "handlers": {
+    "mail_urgent": {
+      "type": "pipe",
+      "command": "/etc/sensu/handlers/mail.py mail -s '<%= @sensu_alert_title %>' -t <%= @sensu_alert_to_urgent_address %> -f <%= @sensu_alert_from_address %>"
+    }
+  }
+}

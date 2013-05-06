@@ -106,6 +106,15 @@ class sensu::config inherits sensu::params {
     require => Package['sensu'],
     notify  => [ Exec['sensu::config::restart_sensu_server'], Exec['sensu::config::restart_sensu_api'] ],
   }
+  file { '/etc/sensu/conf.d/handler_mail_urgent.json':
+    ensure  => present,
+    content => template('sensu/handlers/handler_mail_urgent.json.erb'),
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    require => Package['sensu'],
+    notify  => [ Exec['sensu::config::restart_sensu_server'], Exec['sensu::config::restart_sensu_api'] ],
+  }
   file { '/etc/sensu/conf.d/checks.json':
     ensure  => present,
     content => template('sensu/checks.json.erb'),
