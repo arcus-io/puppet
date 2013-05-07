@@ -37,7 +37,9 @@ Vagrant::Config.run do |config|
     sandbox_config.vm.network :hostonly, "10.10.10.27"
     #sandbox_config.vm.forward_port 80, 8000 # http
     sandbox_config.vm.share_folder "puppet_modules", "/mnt/puppet_modules", "modules"
-    sandbox_config.vm.share_folder "courseload", "/mnt/courseload", "../puppet-courseload/modules"
+    if ENV['EXTRA_MODULE_DIR']
+        sandbox_config.vm.share_folder "extra_modules", "/mnt/extra_modules", ENV['EXTRA_MODULE_DIR']
+    end
   end
 end
 
