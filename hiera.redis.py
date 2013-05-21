@@ -90,9 +90,12 @@ data = {
     'use_nucleo_enc': 'false',
 }
 
-def main(host=None, port=None, db=0, password=None):
+def main(host=None, port=None, db=0, password=None, environment=None):
     rds = Redis(host=host, port=port, db=db, password=password)
     key_base = 'hiera:common:{0}'
+    if environment:
+        key = 'hiera:common:{0}'.format(environment)
+        key_base = '{0}:{{0}}'.format(key)
     for k,v in data.iteritems():
         # only add key if doesn't exist
         if not rds.keys(key_base.format(k)):
@@ -111,7 +114,9 @@ if __name__=='__main__':
     op.add_option('--port', action='store', dest='port', type='int', default=6379)
     op.add_option('--db', action='store', dest='db')
     op.add_option('--password', action='store', dest='password')
+    op.add_option('--environment', action='store', default=None,
+        dest='environment')
     opts, args = op.parse_args()
-    main(opts.host, opts.port, opts.db, opts.password)
+    main(opts.host, opts.port, opts.db, opts.password, opts.environment)
     sys.exit(0)
 

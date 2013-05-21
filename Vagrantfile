@@ -44,25 +44,29 @@ Vagrant::Config.run do |config|
 end
 
 Vagrant.configure("2") do |config|
+
+    config.vm.network :forwarded_port, guest: 80, host: 8080
+    config.vm.network :forwarded_port, guest: 443, host: 8443
+
     config.vm.provider :virtualbox do |vb|
         config.vm.define :puppetmaster do |pm|
             vb.customize ["modifyvm", :id, "--memory", 1024]
         end
     end
 
-    config.vm.provider :vmware_fusion do |v|
-      config.vm.define :puppetmaster do |pm|
-        v.vmx["memsize"] = "1024"
-      end
-      config.vm.define :puppetmaster do |c|
-        v.vmx["displayName"] = "puppetmaster"
-      end
-      config.vm.define :util do |c|
-        v.vmx["displayName"] = "util"
-      end
-      config.vm.define :sandbox do |c|
-        config.vm.network :public_network
-        v.vmx["displayName"] = "sandbox"
-      end
-    end
+    #config.vm.provider :vmware_fusion do |v|
+    #  config.vm.define :puppetmaster do |pm|
+    #    v.vmx["memsize"] = "1024"
+    #  end
+    #  config.vm.define :puppetmaster do |c|
+    #    v.vmx["displayName"] = "puppetmaster"
+    #  end
+    #  config.vm.define :util do |c|
+    #    v.vmx["displayName"] = "util"
+    #  end
+    #  config.vm.define :sandbox do |c|
+    #    config.vm.network :public_network
+    #    v.vmx["displayName"] = "sandbox"
+    #  end
+    #end
 end
