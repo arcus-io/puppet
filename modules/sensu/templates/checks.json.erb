@@ -124,7 +124,7 @@
       "handlers": [
         "mail"
       ],
-      "command": "/etc/sensu/plugins/check-procs.rb -p postgres -C 1 -w 25 -c 30",
+      "command": "/etc/sensu/plugins/check-procs.rb -p postgres -C 1 -w 50 -c 75",
       "interval": 60,
       "subscribers": [ "postgresql" ]
     },
