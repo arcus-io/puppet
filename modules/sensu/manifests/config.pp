@@ -68,11 +68,61 @@ class sensu::config inherits sensu::params {
     ensure  => present,
     source  => 'puppet:///modules/sensu/plugins/check-procs.rb',
     mode    => 0755,
+    require => File['/etc/sensu/plugins'],
   }
   file { '/etc/sensu/plugins/check-http.rb':
     ensure  => present,
     source  => 'puppet:///modules/sensu/plugins/check-http.rb',
     mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_disk.rb':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_disk.rb',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_load.rb':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_load.rb',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_mem.sh':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_mem.sh',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_mysql_disk.rb':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_mysql_disk.rb',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_rabbitmq_messages.rb':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_rabbitmq_messages.rb',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_rds.py':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_rds.py',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_solr_multicore_by_names.py':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_solr_multicore_by_names.py',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
+  file { '/etc/sensu/plugins/check_ssl.sh':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_ssl.sh',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
   }
   # sensu
   exec { 'sensu::config::restart_sensu_api':
