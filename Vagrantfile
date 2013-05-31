@@ -54,19 +54,19 @@ Vagrant.configure("2") do |config|
         end
     end
 
-    #config.vm.provider :vmware_fusion do |v|
-    #  config.vm.define :puppetmaster do |pm|
-    #    v.vmx["memsize"] = "1024"
-    #  end
-    #  config.vm.define :puppetmaster do |c|
-    #    v.vmx["displayName"] = "puppetmaster"
-    #  end
-    #  config.vm.define :util do |c|
-    #    v.vmx["displayName"] = "util"
-    #  end
-    #  config.vm.define :sandbox do |c|
-    #    config.vm.network :public_network
-    #    v.vmx["displayName"] = "sandbox"
-    #  end
-    #end
+    config.vm.provider :vmware_fusion do |v|
+      config.vm.define :puppetmaster do |pm|
+        v.vmx["memsize"] = "1024"
+      end
+      config.vm.define :puppetmaster do |c|
+        v.vmx["displayName"] = "puppetmaster"
+      end
+      config.vm.define :util do |c|
+        v.vmx["displayName"] = "util"
+      end
+      config.vm.define :sandbox do |c|
+        config.vm.network :public_network
+        v.vmx["displayName"] = "sandbox"
+      end
+    end
 end
