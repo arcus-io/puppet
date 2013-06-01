@@ -6,6 +6,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p apache2 -C 1 -w 15 -c 25",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "apache2" ]
     },
     "beam": {
@@ -14,6 +16,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p beam -C 1 -w 4 -c 5",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "sensu::server" ]
     },
     "bucky": {
@@ -52,6 +56,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p cron -C 1 -w 25 -c 30",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "core" ]
     },
     "elasticsearch": {
@@ -60,6 +66,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p elasticsearch -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "graylog2" ]
     },
     "epmd": {
@@ -68,6 +76,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p epmd -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "sensu::server" ]
     },
     "graylog2-server": {
@@ -76,6 +86,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p graylog2-server -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "graylog2" ]
     },
     "memcached": {
@@ -84,6 +96,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p memcached -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "graphite" ]
     },
     "mongod": {
@@ -92,6 +106,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p mongod -C 1 -w 10 -c 15",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "graylog2", "mongodb" ]
     },
     "mongodb_admin": {
@@ -100,6 +116,8 @@
       ],
       "command": "/etc/sensu/plugins/check-http.rb -u http://localhost:28017/ -s false",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "mongodb" ]
     },
     "nginx": {
@@ -108,6 +126,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p nginx -C 1 -w 15 -c 25",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "nginx" ]
     },
     "ntpd": {
@@ -116,6 +136,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p ntpd -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "core" ]
     },
     "postfix": {
@@ -124,6 +146,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p postfix -C 1 -w 5 -c 10",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "postfix" ]
     },
     "postgres": {
@@ -132,6 +156,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p postgres -C 1 -w 50 -c 75",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "postgresql" ]
     },
     "puppet": {
@@ -140,6 +166,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p puppet -C 1 -w 25 -c 35",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "puppet" ]
     },
     "rails": {
@@ -148,6 +176,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p rails -C 1 -w 1 -c 1",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "graylog2" ]
     },
     "redis-server": {
@@ -156,6 +186,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p redis-server -C 1 -w 4 -c 5",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "redis", "sensu::server" ]
     },
     "riemann": {
@@ -164,6 +196,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p riemann -C 2 -w 3 -c 3",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "riemann" ]
     },
     "rsyslogd": {
@@ -172,6 +206,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p rsyslogd -C 1 -w 2 -c 3",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "core" ]
     },
     "sensu-api": {
@@ -180,6 +216,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sensu-api -C 1 -w 4 -c 5",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "sensu::server" ]
     },
     "sensu-dashboard": {
@@ -198,6 +236,8 @@
       ],
       "command": "/etc/sensu/plugins/check-procs.rb -p sshd -C 1 -w 10 -c 15",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "core" ]
     },
     "http_localhost": {
@@ -206,6 +246,8 @@
       ],
       "command": "/etc/sensu/plugins/check-http.rb -u http://localhost/ -s false -r",
       "interval": 60,
+      "occurrences": 2,
+      "refresh": 300,
       "subscribers": [ "nginx" ]
     }
   }
