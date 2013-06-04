@@ -12,7 +12,7 @@ To setup a Puppet master:
   * Symlink `/opt/arcus/auth.conf` to `/etc/puppet/auth.conf` (for Puppet)
   * Copy `/opt/arcus/puppet.conf` to `/etc/puppet/puppet.conf` (for Puppet) -- no symlink ; file is managed with Puppet
   * Symlink `/opt/arcus/hiera.yaml` to `/etc/hiera.yml` (for the Hiera CLI) and `/etc/puppet/hiera.yaml` (for Puppet)
-  * Symlink `/etc/puppet/ssl` to `/var/lib/puppet/ssl` (remove existing `/etc/puppet/ssl` dir first)
+  * Symlink `/var/lib/puppet/ssl` to `/etc/puppet/ssl` (remove existing `/var/lib/puppet/ssl` dir first)
   * Restart Puppet Master
 
 If using Redis as Hiera Backend:
