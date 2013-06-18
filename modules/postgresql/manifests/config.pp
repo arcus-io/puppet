@@ -13,14 +13,15 @@ class postgresql::config inherits postgresql::params {
     notify  => Service['pgbouncer'],
 
   }
-  file { '/etc/pgbouncer/pgbouncer.ini':
-    ensure  => present,
-    owner   => 'postgres',
-    group   => 'postgres',
-    mode    => 0640,
-    content => template('postgresql/pgbouncer.ini.erb'),
-    notify  => Service['pgbouncer'],
-  }
+  # don't specify ; allow users to override
+  #file { '/etc/pgbouncer/pgbouncer.ini':
+  #  ensure  => present,
+  #  owner   => 'postgres',
+  #  group   => 'postgres',
+  #  mode    => 0640,
+  #  content => template('postgresql/pgbouncer.ini.erb'),
+  #  notify  => Service['pgbouncer'],
+  #}
   # this script keeps the pgbouncer user list and postgres user passwords in sync
   file { '/etc/pgbouncer/sync_pg_users.sh':
     alias   => 'postgresql::config::sync_pg_users',
