@@ -20,8 +20,12 @@ class core (
     $syslog_server=$core::params::syslog_server,
   ) inherits core::params {
   class { 'core::package': }
+  class { 'core::users': }
   class { 'core::config':
-    require => [ Class['core::package'] ],
+    require => [
+      Class['core::package'],
+      Class['core::users'],
+    ],
   }
   class { 'core::service':
     require => [ Class['core::config'], Class['core::package'] ],
