@@ -36,14 +36,6 @@ class core::config inherits core::params {
     notify  => Exec['core::config::update_tzdata'],
   }
   # hosts config
-  if ! defined(File['/etc/hosts.d']) {
-    file { ' /etc/hosts.d':
-      ensure    => directory,
-      owner     => root,
-      group     => root,
-      mode      => 0660,
-    }
-  }
   if ! defined(File['/etc/hosts.d/arcus.conf']) {
     file { '/etc/hosts.d/arcus.conf':
       ensure  => present,
@@ -51,7 +43,6 @@ class core::config inherits core::params {
       group   => root,
       mode    => 0644,
       content => template('core/hosts.allow.erb'),
-      require => File['/etc/hosts.d'],
     }
   }
   exec { 'core::config::update_tzdata':
