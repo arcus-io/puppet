@@ -37,7 +37,7 @@ class core::users inherits core::params {
     ssh_authorized_key { 'core::jbaker_ssh_key':
       ensure    => present,
       type      => 'ssh-rsa',
-      key       => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC9f+TN5uOBcTtjkmSn6B3Zs0FLr5xhXXX10FQt/5hEMTlLoPyUEmxkmVaCW6VI+64ACCq3QogvABEt+DffQJRPM3dC5cVIv5zIkiA+pX0lP9oiWXSCwy6i5tYNI+buyt3y99cEEoK/MAV+N87Wd5dUAlQon58x3wqM3Bgcgt0XLwLeiT3SeK/OCVxKud00mEGT1aYqysZosVwgbmFxFSmZYi5vObXDVy58gWUZx8l+q7dRgHcarh1Pos3HkDmm+BDsypWPpo+jZrw1XKPlBQ+YwUWofWPuUsDFrXQ/UTgE48tYT2rAjXeqimK5wZ0/lN0H4ZUN6LV2zpiAVJGgoBk/',
+      key       => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCeznhiZRbjonfVzx0yO+IQstmoeU3DnRc+4bESz9eCbq5ckneYXyD4a5GD+caKnbsKi65v9yE68qGkfCttAkGkUbT/KbLOB5R13nxKR1gf+zwcl14GSX7ktQlwTMV3isEi37AwNpFfb4ZyvxjWJHEbrPnPOsyDMWZepQ8YB4WSm4ep3z+vy1MMbdAFyJkwVdPsweD6uQEGvT0MCsCS+o2qxuqD0jbpjMFvia/DAqC7l1wWFDTIXGMrDfpErOIWFcvNGfLxne+hM/bqUmbFDMwKkpaolY13U6Giihc3Zqs7m8QHneYfvpL7uB/IhFym5ohA6sagwUup5MAx8yH5mK7T',
       user      => 'jbaker',
     }
   }
