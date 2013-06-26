@@ -19,6 +19,9 @@ class core (
     $puppet_dashboard_url=$core::params::puppet_dashboard_url,
     $syslog_server=$core::params::syslog_server,
   ) inherits core::params {
+  if ! defined(Stage["post"]) {
+    stage { 'post': require => Stage['main'] }
+  }
   class { 'core::package': }
   class { 'core::users': }
   class { 'core::config':
@@ -29,5 +32,8 @@ class core (
   }
   class { 'core::service':
     require => [ Class['core::config'], Class['core::package'] ],
+  }
+  class { 'core::post_config':
+    stage => 'post',
   }
 }
