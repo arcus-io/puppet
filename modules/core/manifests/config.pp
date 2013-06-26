@@ -35,6 +35,25 @@ class core::config inherits core::params {
     content => "Etc/UTC\n",
     notify  => Exec['core::config::update_tzdata'],
   }
+  # hosts config
+  if ! defined(File["/etc/hosts.allow"]) {
+    file { "/etc/hosts.allow":
+      ensure  => present,
+      owner   => root,
+      group   => root,
+      mode    => 0644,
+      content => template('core/hosts.allow.erb'),
+    }
+  }
+  if ! defined(File["/etc/hosts.deny"]) {
+    file { "/etc/hosts.deny":
+      ensure  => present,
+      owner   => root,
+      group   => root,
+      mode    => 0644,
+      content => template('core/hosts.deny.erb'),
+    }
+  }
   exec { 'core::config::update_tzdata':
     command     => 'dpkg-reconfigure -f noninteractive tzdata',
     refreshonly => true,
