@@ -39,4 +39,17 @@ class puppetdashboard::config inherits puppetdashboard::params {
     mode    => 0600,
     content => template('puppetdashboard/iptables.erb'),
   }
+  # cron
+  cron { 'puppetdashboard::config::purge_puppet_yaml':
+    command => "cd /var/lib/puppet/reports ; find . -type f -mtime +7 -delete",
+    user    => root,
+    hour    => 8,
+    minute  => 0,
+  }
+  cron { 'puppetdashboard::config::purge_dashboard':
+    command => "cd /usr/share/puppet-dashboard && RAILS_ENV=production rake reports:prune upto=1 unit=wk",
+    user    => root,
+    hour    => 8,
+    minute  => 0,
+  }
 }
