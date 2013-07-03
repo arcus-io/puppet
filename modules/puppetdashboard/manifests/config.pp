@@ -47,8 +47,9 @@ class puppetdashboard::config inherits puppetdashboard::params {
     minute  => 0,
   }
   cron { 'puppetdashboard::config::purge_dashboard':
-    command => "0 5 * * * * root cd /usr/share/puppet-dashboard & RAILS_ENV=production rake reports:prune upto=1 unit=wk",
+    command => "cd /usr/share/puppet-dashboard && RAILS_ENV=production rake reports:prune upto=1 unit=wk",
     user    => root,
     hour    => 8,
     minute  => 0,
+  }
 }
