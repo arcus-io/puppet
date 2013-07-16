@@ -21,6 +21,7 @@ class core::package {
   if ! defined(Package['s3cmd']) { package { 's3cmd': ensure => installed, } }
   if ! defined(Package['screen']) { package { 'screen': ensure => installed, } }
   if ! defined(Package['supervisor']) { package { 'supervisor': ensure => installed, } }
+  if ! defined(Package['tree']) { package { 'tree': ensure => installed, } }
   if ! defined(Package['vim']) { package { 'vim': ensure => installed, } }
   if ! defined(Package['xfsprogs']) { package { 'xfsprogs': ensure => installed, } }
   if ($::operatingsystem == 'Ubuntu') and ($::operatingsystemrelease == '10.04') {
