@@ -25,13 +25,6 @@ class redis::config inherits redis::params {
     mode    => 0750,
     require => User["redis::config::redis_user"],
   }
-  file { 'redis::config::redis_conf':
-    path    => '/etc/redis.conf',
-    content => template('redis/redis.conf.erb'),
-    owner   => "${redis::user}",
-    mode    => 0644,
-    notify  => Service['redis'],
-  }
   # manual symlink to /lib/init/upstart-job for http://projects.puppetlabs.com/issues/14297
   file { 'redis::config::redis_upstart_link':
     ensure  => link,
