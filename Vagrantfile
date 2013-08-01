@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "raring64"
+  config.vm.box_url = "http://files.vagrantup.com/raring64.box"
   config.vm.provision :shell, :path => "provision.sh"
   config.ssh.forward_agent = true
 
