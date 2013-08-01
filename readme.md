@@ -1,6 +1,11 @@
 # Arcus Puppet
 This is the repository for the Arcus Cloud puppet configuration management.
 
+We use submodules from Puppetlabs.  Run the following to make sure you have the latest:
+
+* `git submodule init`
+* `git submodule update`
+
 ## Master
 To setup a Puppet master:
   * Install Puppet (via the PuppetLabs repos)
