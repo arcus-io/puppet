@@ -19,28 +19,6 @@ class puppetdashboard::package {
   if ! defined(Package["ruby"]) { package { "ruby": ensure => installed, } }
   if ! defined(Package["ruby-dev"]) { package { "ruby-dev": ensure => installed, } }
 
-  exec { "puppetdashboard::package::wget_rubygems":
-    cwd       => "/tmp",
-    command   => "wget ${puppetdashboard::params::rubygems_url} -O rubygems.tar.gz",
-    #creates   => "/usr/bin/gem1.8",
-    unless    => "test `gem -v` = '1.3.7'",
-    notify    => Exec["puppetdashboard::package::install_rubygems"],
-    require   => [ Package["build-essential"], Package["libmysql-ruby"], Package["libmysqlclient-dev"],
-    Package["libopenssl-ruby"], Package["rake"], Package["rdoc"], Package["ri"], Package["ruby"], Package["ruby-dev"] ]
-  }
-  exec { "puppetdashboard::package::install_rubygems":
-    cwd         => "/tmp",
-    command     => "tar zxf rubygems.tar.gz ; cd rubygems* ; ruby setup.rb ; cd /tmp ; rm -rf rubygems*",
-    refreshonly => true,
-    require     => Exec["puppetdashboard::package::wget_rubygems"],
-    notify      => Exec["puppetdashboard::package::update_alternatives"],
-  }
-  exec { "puppetdashboard::package::update_alternatives":
-    command     => "update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.8 1",
-    refreshonly => true,
-    require     => Exec["puppetdashboard::package::install_rubygems"],
-  }
-
   # HACK: we use an custom apt policy file to prevent the dashboard from starting after
   # install ; otherwise it will fail because the db:migrate hasn't been run
   # there is supposed to be an option that checks for NO_MIGRATION_CHECK env var but it doesn't work
@@ -100,7 +78,7 @@ class puppetdashboard::package {
       cwd         => "/usr/share/puppet-dashboard/",
       environment => "RAILS_ENV=production",
       command     => "rake db:migrate",
-      require     => [ File["puppetdashboard::package::dashboard_database_config"], Exec["puppetdashboard::package::update_alternatives"] ],
+      require     => File["puppetdashboard::package::dashboard_database_config"],
       refreshonly => true,
     }
   } else { # don't trigger db:migrate ; just install the config
