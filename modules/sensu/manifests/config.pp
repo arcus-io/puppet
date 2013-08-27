@@ -112,12 +112,6 @@ class sensu::config inherits sensu::params {
     mode    => 0755,
     require => File['/etc/sensu/plugins'],
   }
-  file { '/etc/sensu/plugins/check_solr_multicore_by_names.py':
-    ensure  => present,
-    source  => 'puppet:///modules/sensu/plugins/check_solr_multicore_by_names.py',
-    mode    => 0755,
-    require => File['/etc/sensu/plugins'],
-  }
   file { '/etc/sensu/plugins/check_ssl.sh':
     ensure  => present,
     source  => 'puppet:///modules/sensu/plugins/check_ssl.sh',
