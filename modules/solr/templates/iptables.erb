@@ -1,3 +1,0 @@
-<% @iptables_hosts.each do |host| %>
-iptables -A INPUT -i eth0 -p tcp --dport 8983 -j ACCEPT -s <%= host %>
-<% end %>
