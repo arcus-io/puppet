@@ -55,7 +55,7 @@ class redis::config inherits redis::params {
     content => template('redis/iptables.erb'),
   }
   # tools
-  file { '/usr/bin/arcus-show-hiera':
+  file { '/usr/local/bin/arcus-show-hiera':
     ensure  => present,
     owner   => root,
     group   => root,
