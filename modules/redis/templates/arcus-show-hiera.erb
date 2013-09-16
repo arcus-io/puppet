@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Get current key/values in redis
+
+keys=$(redis-cli keys \* | sort)
+
+for key in ${keys}
+do
+    type=$(redis-cli type ${key})
+    printf "${key} (${type})\n"
+    case ${type} in
+        set)
+            value=$(redis-cli smembers ${key} | sort)
+            for v in ${value}
+            do
+                printf "  ${v}\n"
+            done
+            ;;
+        string)
+            value=$(redis-cli get ${key})
+            printf "  ${value}\n"
+            ;;
+        *)
+            echo "Add redis command for this type"
+    esac
+done
