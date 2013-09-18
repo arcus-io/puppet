@@ -57,7 +57,7 @@ production:
     # puppet autosign dev
     echo "*.local" > /etc/puppet/autosign.conf
     # hiera
-    gem install --no-ri --no-rdoc hiera hiera-puppet redis hiera-redis hiera-redis-backend
+    gem install --no-ri --no-rdoc redis hiera-redis
     ln -sf /mnt/arcus-puppet/auth.conf /etc/puppet/auth.conf
     ln -sf /mnt/arcus-puppet/puppet.conf /etc/puppet/puppet.conf
     ln -sf /mnt/arcus-puppet/puppetdb.conf /etc/puppet/puppetdb.conf
