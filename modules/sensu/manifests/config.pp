@@ -76,6 +76,12 @@ class sensu::config inherits sensu::params {
     mode    => 0755,
     require => File['/etc/sensu/plugins'],
   }
+  file { '/etc/sensu/plugins/nginx-metrics.rb':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/nginx-metrics.rb',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],
+  }
   file { '/etc/sensu/plugins/check_disk.rb':
     ensure  => present,
     source  => 'puppet:///modules/sensu/plugins/check_disk.rb',
