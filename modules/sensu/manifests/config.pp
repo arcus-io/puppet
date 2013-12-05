@@ -130,6 +130,12 @@ class sensu::config inherits sensu::params {
     mode    => 0755,
     require => File['/etc/sensu/plugins'],
   }
+  file { '/etc/sensu/plugins/check_git_sync.sh':
+    ensure  => present,
+    source  => 'puppet:///modules/sensu/plugins/check_git_sync.sh',
+    mode    => 0755,
+    require => File['/etc/sensu/plugins'],                                                                                                                                                                                                   
+  }
   # sensu
   exec { 'sensu::config::restart_sensu_api':
     command     => 'service sensu-api stop ; service sensu-api start',
