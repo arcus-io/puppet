@@ -21,7 +21,7 @@ if [ $# -eq 0 ];
 
       cd ${PAIR[0]}
       GIT_LOCAL=$(git log -n 1 --pretty=format:"%H")
-      GIT_REMOTE=$(git ls-remote ${PAIR[1]} | grep refs/heads/master | cut -f 1)
+      GIT_REMOTE=$(sudo git ls-remote ${PAIR[1]} | grep refs/heads/master | cut -f 1)
 
       # Collect repositories that are out of sync
       if ! [ "${GIT_LOCAL}" == "${GIT_REMOTE}" ]; then
@@ -33,7 +33,7 @@ if [ $# -eq 0 ];
     OUT_OF_SYNC=${#NOT_SYNCED[@]}
 
     # Return warning for the repositories that are out of sync
-    if [ ${OUT_OF_SYNC} > 0 ]; then
+    if [ ${OUT_OF_SYNC} -gt 0 ]; then
       OUTPUT=""
 
       for (( i=0; i<${OUT_OF_SYNC}; i++ )); do
