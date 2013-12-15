@@ -20,10 +20,7 @@ class core::config inherits core::params {
     'true'  => true,
     default => false,
   }
-  $classes = $core::config::use_nucleo_enc ? {
-    true  => get_arcus_modules(hiera('arcus_api_url'), hiera('arcus_api_key')),
-    default => get_enc_classes(),
-  }
+  $classes = get_enc_classes([$::environment])
   $memcached_listen_host = $core::params::memcached_listen_host
   $memcached_port = $core::params::memcached_port
   $module_dirs = $core::params::module_dirs
