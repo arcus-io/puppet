@@ -16,9 +16,8 @@ module Puppet::Parser::Functions
         end
         result = http.start {|http| http.request(request)}
         yml = YAML.load(result.body)
+        puts yml.classes
         yml.classes
-    rescue
-        []
     end
   end
 end
