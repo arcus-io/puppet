@@ -20,7 +20,7 @@ class core::config inherits core::params {
     'true'  => true,
     default => false,
   }
-  $classes = get_enc_classes(['$::environment'])
+  $classes = get_enc_classes()
   $memcached_listen_host = $core::params::memcached_listen_host
   $memcached_port = $core::params::memcached_port
   $module_dirs = $core::params::module_dirs
