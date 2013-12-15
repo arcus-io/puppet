@@ -20,6 +20,21 @@ To setup a Puppet master:
   * Symlink `/var/lib/puppet/ssl` to `/etc/puppet/ssl` (remove existing `/var/lib/puppet/ssl` dir first)
   * Restart Puppet Master
 
+# Custom Functions
+In order for some custom functions to work you will need to add `127.0.0.1` to the `auth.conf` to access nodes.
+
+/etc/puppet/auth.conf
+
+```
+...
+
+path ~ ^/node/([^/]+)$
+...
+allow_ip 127.0.0.1
+...
+
+```
+
 If using Redis as Hiera Backend:
   * Install Redis and Hiera-Redis gems:
     * `gem install redis`
