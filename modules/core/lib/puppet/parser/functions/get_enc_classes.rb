@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     begin
         node = lookupvar('fqdn')
         env = lookupvar('environment')
-        uri = URI.parse("https://localhost:8140/#{env}/node/#{node}")
+        uri = URI.parse("https://localhost:8140/prod/node/#{node}")
         require 'net/https' if uri.scheme == 'https'
         request = Net::HTTP::Get.new(uri.path, initheader = {'Accept' => 'yaml'})
         http = Net::HTTP.new(uri.host, uri.port)
