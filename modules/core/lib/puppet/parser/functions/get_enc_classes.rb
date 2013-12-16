@@ -18,6 +18,8 @@ module Puppet::Parser::Functions
         yml = YAML.load(result.body)
         puts yml.classes
         yml.classes
+    rescue
+        []
     end
   end
 end
