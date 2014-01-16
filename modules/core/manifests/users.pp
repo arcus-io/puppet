@@ -41,6 +41,23 @@ class core::users inherits core::params {
       user      => 'jbaker',
     }
   }
+  if ! defined(User['mbentley']) {
+    # user: mbentley
+    user { 'mbentley':
+      ensure      => present,
+      comment     => 'Matt Bentley',
+      managehome  => true,
+      shell       => '/bin/bash',
+      groups      => ['sudo'],
+      membership  => inclusive,
+    }
+    ssh_authorized_key { 'core::mbentley_ssh_key':
+      ensure    => present,
+      type      => 'ssh-rsa',
+      key       => 'AAAAB3NzaC1yc2EAAAABJQAAAgBvdC9EIzKLYXbgy5SBK9LV0/RXLvQc07ZyJ8TcNLkeUmIHc8ilX6vsXI185G7SBDFQsiQG1ZXH3m1dq3894IRoOtrIuCiq2EPikpjDNs9q17XqaWKgmcGeRdMpdts9549NsebwTrpr1TwzIMk1cp3YTkbEBHKQjV9XYr/OXMOEznipj3iCg5H4KuB+yyS+4iUOtHaCigP8Wi4PQcDxa3iZk2us0KAZhpsUXeByrIiPYQtKJoMmBrdEvE3tK4It5dma6PIBMmK23IBEXNP0e9brUQNVyrfgxosXsKK/i7GxA4YVDcnZMOApySrVgiaLwohfHXdbJ0s2N6ZMAdNO30qUgTFGwla15cjsHkZy8twiBi/kE02NW4+aZbDhD40XxhoYZr2UjPFF0+1DKgZbQwhJ2uc4StC+xrD3zyz01J9DJB/sAyVAD72veqy7+Jv+SYBrv4PCYZlZdoJIblJ6NLznXf/1b06M2sUaHdOQdA5zERJAFivLLrUuvHtbyM3nF3sMPauKXO16mVbP8irpt4TB0iETGZLFWF3bk2bu3bXI2SUd7P+Bn+J4D/OWBiCi0BtTkkEuKFyRDYM2cPi9uwoIj0u7zbDOv8SFoieRSFgjxnndXhx56usYe0FB8hAYH8c1lQQAHcc3GkofNQwn/hTHOxV896cMskkTECb4AHXbkw==',
+      user      => 'mbentley',
+    }
+  }
   if ! defined(User['kreynolds']) {
     # user: kreynolds
     user { 'kreynolds':
