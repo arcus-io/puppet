@@ -1,0 +1,49 @@
+class postgresql93::config inherits postgresql93::params {
+  $iptables_hosts = $postgresql93::params::iptables_hosts
+  Exec {
+    path      => "${::path}",
+    logoutput => on_failure,
+  }
+  file { '/etc/default/pgbouncer':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0644,
+    content => template('postgresql93/pgbouncer.default'),
+    notify  => Service['pgbouncer'],
+
+  }
+  # don't specify ; allow users to override
+  #file { '/etc/pgbouncer/pgbouncer.ini':
+  #  ensure  => present,
+  #  owner   => 'postgres',
+  #  group   => 'postgres',
+  #  mode    => 0640,
+  #  content => template('postgresql93/pgbouncer.ini.erb'),
+  #  notify  => Service['pgbouncer'],
+  #}
+  # this script keeps the pgbouncer user list and postgres user passwords in sync
+  file { '/etc/pgbouncer/sync_pg_users.sh':
+    alias   => 'postgresql93::config::sync_pg_users',
+    ensure  => present,
+    owner   => 'postgres',
+    group   => 'postgres',
+    mode    => 0755,
+    content => template('postgresql93/sync_pg_users.sh.erb'),
+  }
+  cron { 'postgresql93::config::pgbouncer_user_list_sync':
+    command   => '/bin/bash /etc/pgbouncer/sync_pg_users.sh',
+    user      => 'postgres',
+    hour      => '*',
+    minute    => '*',
+    require   => File['postgresql93::config::sync_pg_users'],
+  }
+  # iptables
+  file { '/tmp/.arcus.iptables.rules.postgresql93':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => 0600,
+    content => template('postgresql93/iptables.erb'),
+  }
+}
